@@ -47,41 +47,46 @@ Ensures funds are automatically released based on the terms of the agreement, wi
 
 - Node.js v14 or later 🖥️
 - A blockchain wallet like **Albedo** for secure cryptocurrency transactions. 🔐
-- SafeTrust API access (details [here](https://docs.trustlesswork.com/trustless-work)). 📖
+- Trustless Work API access (details [here](https://docs.trustlesswork.com/trustless-work)). 📖
 
 ### **Installation**
 
-1️⃣ Fork this repository and then clone it:
-
-```bash
-git clone https://github.com/your_user/FrontEnd.git
-```
-
-```bash
-git remote add upstream https://github.com/safetrustcr/FrontEnd.git
-```
+1️⃣ Fork this repository
 
 2️⃣ Navigate to the project directory:
+
+```bash
+git clone https://github.com/<your_user>/Frontend
+```
+3️⃣ Add the remote repository upstream:
+
+```bash
+git remote add upstream https://github.com/safetrustcr/Frontend
+```
+
+4️⃣ Navigate to the project directory:
 
 ```bash
 cd /Frontend
 ```
 
-3️⃣ Set up environment variables (make sure the .env file was created)
+5️⃣ Set up environment variables **(make sure the .env file was created)**
 
-\`\`\`bash
+```bash
 echo "NEXT_PUBLIC_API_URL=https://api.trustlesswork.com" > .env
-\`\`\`
-
-4️⃣ Install the app and start the development server:
+```
+6️⃣ Install the app and start the development server:
 
 ```bash
 npm install
 ```
 
-\`\`\`bash
+7️⃣ Execute the app: 
+
+```bash
 npm run dev
-\`\`\`
+```
+
 
 ---
 
@@ -90,8 +95,6 @@ npm run dev
 - **`/escrow/initiate`**: Start the escrow process and create agreements.
 - **`/escrow/fund`**: Securely fund the escrow account.
 - **`/escrow/complete`**: Complete the process and release funds to the appropriate party.
-
-📚 Full documentation [here](https://docs.trustlesswork.com/trustless-work/api-reference).
 
 ---
 
