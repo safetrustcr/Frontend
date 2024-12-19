@@ -14,7 +14,7 @@ const RegisterCard: React.FC = () => {
             alt="SafeTrust"
             width={208}
             height={48}
-            className="mb-8 sm:mb-12"
+            className="mb-8 sm:mb-12 w-32 h-auto sm:w-52 lg:w-52"
             priority
           />
         </div>

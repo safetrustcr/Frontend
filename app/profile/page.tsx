@@ -12,13 +12,13 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col dark:bg-dark-background">
       <Header />
-      <div className="bg-white dark:bg-dark-surface2 shadow-lg dark:shadow-gray-900 rounded-lg p-8 w-full max-w-5xl mx-auto mt-8 flex h-full">
+      <div className="bg-white dark:bg-dark-surface2 shadow-lg dark:shadow-gray-900 rounded-lg p-8 w-full max-w-5xl mx-auto mt-8 flex flex-col lg:flex-row h-full">
         <Sidebar />
-        <div className="w-3/4 pl-8 overflow-hidden">
+        <div className="w-full lg:w-3/4 pl-0 lg:pl-8 mt-6 lg:mt-0 overflow-hidden">
           <h1 className="text-2xl font-semibold mb-6 text-black dark:text-gray-200">
             {t('profile.title')}
           </h1>
-          <div className="flex items-center gap-6 mb-6">
+          <div className="flex flex-col lg:flex-row items-center gap-6 mb-6">
             <ProfilePicture />
             <textarea
               placeholder={t('profile.summaryHolder')}
@@ -29,8 +29,8 @@ const Home: React.FC = () => {
           </div>
           <ProfileForm />
           <AccountOverview />
-          <div className="text-right">
-            <button className="bg-default-color text-white px-4 py-2 rounded-lg hover:bg-default-color transition-colors">
+          <div className="text-right mt-6">
+            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
               {t('profile.overView.saveBtn')}
             </button>
           </div>

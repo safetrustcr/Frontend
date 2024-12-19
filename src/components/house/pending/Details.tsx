@@ -21,7 +21,9 @@ const Details: React.FC = () => {
   return (
     <div className="col-span-8 bg-light-secondary dark:bg-dark-surface rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold text-light-primary dark:text-dark-primary">La sabana</h2>
+        <h2 className="text-xl font-bold text-light-primary dark:text-dark-primary">
+          La sabana
+        </h2>
         <button
           onClick={payReservation}
           className={`bg-default-color text-white px-6 py-2 rounded-lg font-semibold hover:bg-default-color${
@@ -33,26 +35,26 @@ const Details: React.FC = () => {
         </button>
       </div>
       <hr className="my-4 border-light-primary dark:border-dark-primary" />
-      <div className="flex gap-4 mt-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
         <img
           src="/img/house1.jpg"
           alt="House"
-          className="w-32 h-24 object-cover rounded-lg"
+          className="w-full h-auto object-cover rounded-lg"
         />
         <img
           src="/img/house1.jpg"
           alt="House"
-          className="w-32 h-24 object-cover rounded-lg"
+          className="w-full h-auto object-cover rounded-lg"
         />
         <img
           src="/img/house1.jpg"
           alt="House"
-          className="w-32 h-24 object-cover rounded-lg"
+          className="w-full h-auto object-cover rounded-lg"
         />
         <img
           src="/img/house1.jpg"
           alt="House"
-          className="w-32 h-24 object-cover rounded-lg"
+          className="w-full h-auto object-cover rounded-lg"
         />
       </div>
       <div className="flex items-center text-light-primary dark:text-dark-primary text-sm mt-6">
@@ -62,28 +64,42 @@ const Details: React.FC = () => {
       <div className="flex gap-4 mt-4 text-default-color">
         <div className="flex items-center">
           <FaBed className="w-5 h-5 mr-2" />
-          <span className="text-light-primary dark:text-dark-primary text-sm">2 bd.</span>
+          <span className="text-light-primary dark:text-dark-primary text-sm">
+            2 bd.
+          </span>
         </div>
         <div className="flex items-center">
           <FaPaw className="w-5 h-5 mr-2" />
-          <span className="text-light-primary dark:text-dark-primary text-sm">pet friendly</span>
+          <span className="text-light-primary dark:text-dark-primary text-sm">
+            pet friendly
+          </span>
         </div>
         <div className="flex items-center">
           <FaBath className="w-5 h-5 mr-2" />
-          <span className="text-light-primary dark:text-dark-primary text-sm">1 ba.</span>
+          <span className="text-light-primary dark:text-dark-primary text-sm">
+            1 ba.
+          </span>
         </div>
       </div>
       <div className="mt-6">
-        <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">Property details</h3>
+        <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">
+          Property details
+        </h3>
         <p className="text-light-primary dark:text-dark-primary text-sm mt-2">
           Lorem ipsum is simply dummy text of the printing and typesetting
           industry.
         </p>
       </div>
       <div className="mt-6">
-        <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">Owner contact</h3>
-        <p className="text-light-primary dark:text-dark-primary text-sm mt-2">+506 6845-2179</p>
-        <p className="text-light-primary dark:text-dark-primary text-sm">albertoCasas100@gmail.com</p>
+        <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">
+          Owner contact
+        </h3>
+        <p className="text-light-primary dark:text-dark-primary text-sm mt-2">
+          +506 6845-2179
+        </p>
+        <p className="text-light-primary dark:text-dark-primary text-sm">
+          albertoCasas100@gmail.com
+        </p>
       </div>
     </div>
   );

@@ -192,23 +192,21 @@ const PropertyList: React.FC = () => {
   };
 
   return (
-    <div className="px-12 py-8">
-      <div className="flex justify-between items-center mb-6">
+    <div className="px-4 py-8 sm:px-12">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
         <div>
-          <h2 className="text-2xl text-black dark:text-gray-200">
+          <h2 className="text-xl sm:text-2xl text-black dark:text-gray-200">
             {t('propertyList.title')}{' '}
             <span className="text-black font-bold dark:text-gray-200">
-              {' '}
               {t('propertyList.subtitle')}
             </span>
           </h2>
           <p className="text-gray-500 dark:text-gray-200">
-            {' '}
             {t('propertyList.unitsAvailable')}
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative mt-4 sm:mt-0">
           <button
             onClick={toggleDropdown}
             className="flex items-center text-gray-500 dark:text-gray-200 text-sm focus:outline-none"
@@ -222,29 +220,52 @@ const PropertyList: React.FC = () => {
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
               <ul className="py-1">
-                {sortList.map((option) => (
-                  <li
-                    key={option.id}
-                    className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => handleSortOptionChange(option)}
-                  >
-                    {t(option.name)}
-                  </li>
-                ))}
+                <li
+                  className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
+                  onClick={() =>
+                    handleSortOptionChange(t('propertyList.sortBy.orderOne'))
+                  }
+                >
+                  {t('propertyList.sortBy.orderOne')}
+                </li>
+                <li
+                  className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
+                  onClick={() =>
+                    handleSortOptionChange(t('propertyList.sortBy.orderTwo'))
+                  }
+                >
+                  {t('propertyList.sortBy.orderTwo')}
+                </li>
+                <li
+                  className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
+                  onClick={() =>
+                    handleSortOptionChange(t('propertyList.sortBy.orderThree'))
+                  }
+                >
+                  {t('propertyList.sortBy.orderThree')}
+                </li>
+                <li
+                  className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
+                  onClick={() =>
+                    handleSortOptionChange(t('propertyList.sortBy.orderFour'))
+                  }
+                >
+                  {t('propertyList.sortBy.orderFour')}
+                </li>
               </ul>
             </div>
           )}
         </div>
       </div>
 
-      <div className="flex space-x-2 mb-8">
-        <button className="px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black">
+      <div className="flex flex-wrap justify-start sm:space-x-2 mb-8">
+        <button className="px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black mb-2 sm:mb-0">
           {t('propertyList.filterOne')}
         </button>
-        <button className="px-4 py-2 text-sm border border-gray-300 rounded-full text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:text-black">
+        <button className="px-4 py-2 text-sm border border-gray-300 rounded-full text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:text-black mb-2 sm:mb-0">
           {t('propertyList.filterTwo')}
         </button>
-        <button className="px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black">
+        <button className="px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black mb-2 sm:mb-0">
           {t('propertyList.filterThree')}
         </button>
         <button className="px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black">
@@ -252,8 +273,8 @@ const PropertyList: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
-        {MOCK_DATA_PROPERTY_LIST.sort(propertySort).map((property, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {properties.map((property, index) => (
           <div
             key={property.title}
             onClick={handleCardClick}
