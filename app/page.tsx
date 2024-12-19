@@ -8,7 +8,6 @@ const Home: React.FC = () => {
     <div className="bg-gray-100 min-h-screen dark:bg-dark-background">
       <Header />
       <div className="flex">
-        <Sidebar />
         <div className="flex-grow">
           <PropertyList />
         </div>
