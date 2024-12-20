@@ -13,7 +13,30 @@ const ForgotPasswordCard: React.FC = () => {
   // forgot password card
   return (
     <>
-      <div className="fixed left-0 bottom-0 hidden md:block dark:bg-dark-surface">
+      <div className="fixed -bottom-6 w-full flex justify-between md:hidden">
+        <div className="w-[45%]">
+          <Image
+            src="/img/apartments 4.png"
+            alt="City Background Left"
+            width={200}
+            height={120}
+            className="object-contain w-full"
+            priority
+          />
+        </div>
+        <div className="w-[45%]">
+          <Image
+            src="/img/apartments 3.png"
+            alt="City Background Right"
+            width={200}
+            height={120}
+            className="object-contain w-full"
+            priority
+          />
+        </div>
+      </div>
+
+      <div className="fixed left-0 bottom-0 hidden md:block">
         <Image
           src="/img/apartments 4.png"
           alt="City Background Left"
@@ -50,7 +73,7 @@ const ForgotPasswordCard: React.FC = () => {
             Forgot password?
           </h1>
           <p className="text-gray-500 text-center mt-2 text-sm md:text-base dark:text-gray-200">
-            No worries, we'll send you a temporary password\
+            No worries, we'll send you a temporary password
           </p>
         </div>
 

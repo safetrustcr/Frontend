@@ -2,8 +2,10 @@ import React from 'react';
 
 const Notes: React.FC = () => {
   return (
-    <div className="mb-8">
-      <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">Notes</h3>
+    <div className="mb-8 p-2">
+      <h3 className="text-lg font-bold text-light-primary dark:text-dark-primary">
+        Notes
+      </h3>
       <p className="text-light-primary dark:text-dark-primary text-sm mt-2">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever

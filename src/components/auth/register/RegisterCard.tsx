@@ -14,7 +14,7 @@ const RegisterCard: React.FC = () => {
             alt="SafeTrust"
             width={208}
             height={48}
-            className="mb-8 sm:mb-12"
+            className="mb-8 sm:mb-12 w-32 h-auto sm:w-52 lg:w-52"
             priority
           />
         </div>
@@ -23,7 +23,10 @@ const RegisterCard: React.FC = () => {
 
         <p className="text-center text-black text-sm mt-6">
           Already have an account?{' '}
-          <a href="/auth/login" className="text-sm text-default-color hover:underline">
+          <a
+            href="/auth/login"
+            className="text-sm text-default-color hover:underline"
+          >
             Login here
           </a>
         </p>

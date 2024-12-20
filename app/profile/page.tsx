@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col dark:bg-dark-background">
       <Header />
-      <div className="bg-white dark:bg-dark-surface2 shadow-lg dark:shadow-gray-900 rounded-lg p-8 w-full max-w-5xl mx-auto mt-8 flex h-full">
+      <div className="bg-white dark:bg-dark-surface2 shadow-lg dark:shadow-gray-900 rounded-lg p-8 w-full max-w-5xl mx-auto mt-8 flex flex-col lg:flex-row h-full">
         <Sidebar />
         <div className="w-3/4 pl-8 overflow-hidden">
           {loading ? (
