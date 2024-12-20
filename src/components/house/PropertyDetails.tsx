@@ -79,13 +79,13 @@ const PropertyDetails: React.FC = () => {
 
             <div className="flex justify-between items-center mt-4">
               <div className="flex items-center text-gray-700 text-sm">
-                <MdLocationOn className="text-default-color w-5 h-5 mr-2"/>
+                <MdLocationOn className="text-default-color w-5 h-5 mr-2" />
                 {t('propertyDetails.address')}
               </div>
             </div>
 
             <hr className="my-4 border-gray-300" />
-            
+
             <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
               <div className="flex gap-6 text-orange-500 items-center">
                 <div className="flex items-center">
