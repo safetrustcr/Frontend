@@ -6,33 +6,12 @@ import ProfilePicture from '@/components/profile/ProfilePicture';
 import ProfileForm from '@/components/profile/ProfileForm';
 import AccountOverview from '@/components/profile/AccountOverview';
 import { useTranslation } from 'react-i18next';
-import { useUserStore } from '@/store/userStore';
-import { useQuery } from '@apollo/client';
-import { GET_USER } from '@/graphql/queries/getUser.graphql';
 import LoadingSkeleton from '@/components/profile/LoadingSkeleton';
+import { useUserStore } from '@/store/userStore/user';
+
 const Home: React.FC = () => {
-  const { user, setUser, setUserWallets, setLoading, setError, loading } =
-    useUserStore();
-
+  const { user, loading } = useUserStore();
   const { t } = useTranslation();
-
-  //fetch profile with graphql query. handle error and loading state.
-  // const { data, loading, error } = useQuery(GET_USER, {
-  //   variables: { id: user?.id }, //how do we get user_id from auth?
-  // });
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setUser(data.users[0]);
-  //     setUserWallets(data.user_wallets);
-  //   }
-  //   if (loading) {
-  //     setLoading(true);
-  //   }
-  //   if (error) {
-  //     setError(error.message);
-  //   }
-  // }, [data, loading, error]);
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col dark:bg-dark-background">

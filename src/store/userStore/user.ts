@@ -1,3 +1,4 @@
+import { ApolloError } from '@apollo/client';
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
@@ -29,24 +30,29 @@ export interface GetUserQuery {
 
 type UserState = {
   loading: boolean;
-  error: string | null;
+  error: ApolloError | null;
   user: User | null;
   userWallets: UserWallet[];
   setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
-  setUser: (user: User) => void;
+  setError: (error: ApolloError | null) => void;
+  setUser: (user: User | null) => void;
   setUserWallets: (userWallets: UserWallet[]) => void;
 };
 
 export const useUserStore = create<UserState>()(
-  devtools((set) => ({
-    user: null,
-    userWallets: [],
-    loading: false,
-    error: null,
-    setLoading: (loading: boolean) => set({ loading }),
-    setError: (error: string | null) => set({ error }),
-    setUser: (user: User) => set({ user }),
-    setUserWallets: (userWallets: UserWallet[]) => set({ userWallets }),
-  }))
+  persist(
+    devtools((set) => ({
+      user: null,
+      userWallets: [],
+      loading: false,
+      error: null,
+      setLoading: (loading: boolean) => set({ loading }),
+      setError: (error: ApolloError | null) => set({ error }),
+      setUser: (user: User | null) => set({ user }),
+      setUserWallets: (userWallets: UserWallet[]) => set({ userWallets }),
+    })),
+    {
+      name: 'safetrust-user',
+    }
+  )
 );
