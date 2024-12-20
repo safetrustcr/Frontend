@@ -11,7 +11,7 @@ const Details: React.FC = () => {
         <h3 className="text-lg font-semibold text-light-secondary dark:text-dark-primary">
           Escrow Description
         </h3>
-        <div className="grid grid-cols-2 gap-4 text-sm text-light-secondary dark:text-dark-primary mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-light-secondary dark:text-dark-primary mt-2">
           <p>
             <strong>Creation date:</strong> 25 January 2025
           </p>
@@ -23,7 +23,7 @@ const Details: React.FC = () => {
 
       <hr className="my-6 border-gray-300" />
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <h3 className="text-lg font-semibold text-light-secondary dark:text-dark-primary">
             Tenant Information

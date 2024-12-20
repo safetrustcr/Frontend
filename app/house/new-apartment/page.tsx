@@ -9,11 +9,13 @@ const Home: React.FC = () => {
   return (
     <div className="bg-light-secondary dark:bg-dark-background min-h-screen">
       <Header />
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <Sidebar />
-        <Bounded title="New Apartment">
-          <FormNewApartment />
-        </Bounded>
+        <div className="flex-1 p-6">
+          <Bounded title="New Apartment">
+            <FormNewApartment />
+          </Bounded>
+        </div>
       </div>
     </div>
   );

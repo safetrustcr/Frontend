@@ -6,7 +6,7 @@ import { FaUser, FaHome, FaUsers } from 'react-icons/fa';
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <div className="w-1/4 border-r border-gray-300 pr-4">
+    <div className="w-full lg:w-1/4 border-r border-gray-300 pr-4 lg:pr-8 mt-4 lg:mt-0">
       <h2 className="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
         {t('profile.sideTitle')}
       </h2>

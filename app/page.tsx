@@ -7,8 +7,8 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen dark:bg-dark-background">
       <Header />
-      <div className="flex">
-        <div className="flex-grow">
+      <div className="flex flex-col lg:flex-row">
+        <div className="flex-grow p-4">
           <PropertyList />
         </div>
       </div>

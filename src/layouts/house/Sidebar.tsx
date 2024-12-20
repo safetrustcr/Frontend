@@ -1,10 +1,11 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
 
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const suggestions = [
     {
       id: 1,
@@ -48,8 +49,23 @@ const Sidebar: React.FC = () => {
     },
   ];
 
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="w-97 p-4 bg-white dark:bg-dark-surface border-r dark:border-gray-700">
+    <div
+      className={`w-97 p-4 bg-white dark:bg-dark-surface border-r dark:border-gray-700 transition-transform transform ${
+        isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } lg:translate-x-0`}
+    >
+      <button
+        className="lg:hidden absolute top-3 right-3 text-black dark:text-white"
+        onClick={handleSidebarToggle}
+      >
+        <AiOutlineClose className="w-6 h-6" />
+      </button>
+
       <h2 className="text-xl font-bold text-black mb-2 dark:text-gray-200">
         {t('sideSuggestions.title')}
       </h2>
