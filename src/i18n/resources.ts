@@ -241,7 +241,7 @@ const resources = {
         filterOne: 'Todos los apartamentos',
         filterTwo: '1 baño',
         filterThree: '2 dormitorios',
-        filterFour: '3 dormitorios',
+        filterFour: '+3 dormitorios',
 
         sortBy: {
           title: 'Ordenar por:',

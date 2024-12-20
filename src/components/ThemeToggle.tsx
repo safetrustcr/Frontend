@@ -12,7 +12,7 @@ export const ThemeToggle: React.FC = () => {
       aria-label="Toggle theme"
     >
       {theme === 'dark' ? (
-        <FaSun className="w-5 h-5 text-default-color" />
+        <FaSun className="w-5 h-5 text-yellow-500" />
       ) : (
         <FaMoon className="w-5 h-5 text-gray-700" />
       )}
