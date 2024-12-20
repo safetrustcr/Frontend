@@ -104,33 +104,25 @@ const PropertyList: React.FC = () => {
               <ul className="py-1">
                 <li
                   className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
-                  onClick={() =>
-                    handleSortOptionChange(t('propertyList.sortBy.orderOne'))
-                  }
+                  onClick={() => handleSortOptionChange(sortList[0])}
                 >
                   {t('propertyList.sortBy.orderOne')}
                 </li>
                 <li
                   className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
-                  onClick={() =>
-                    handleSortOptionChange(t('propertyList.sortBy.orderTwo'))
-                  }
+                  onClick={() => handleSortOptionChange(sortList[1])}
                 >
                   {t('propertyList.sortBy.orderTwo')}
                 </li>
                 <li
                   className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
-                  onClick={() =>
-                    handleSortOptionChange(t('propertyList.sortBy.orderThree'))
-                  }
+                  onClick={() => handleSortOptionChange(sortList[2])}
                 >
                   {t('propertyList.sortBy.orderThree')}
                 </li>
                 <li
                   className="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 cursor-pointer"
-                  onClick={() =>
-                    handleSortOptionChange(t('propertyList.sortBy.orderFour'))
-                  }
+                  onClick={() => handleSortOptionChange(sortList[3])}
                 >
                   {t('propertyList.sortBy.orderFour')}
                 </li>
