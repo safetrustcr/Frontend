@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-tailwind/react';
 import { ThemeProvider as CustomThemeProvider } from '@/providers/ThemeProvider';
 import '../src/i18n/config';
 import themeScript from '@/utils/themeScript';
+import { ClientProviders } from '@/providers/ClientProviders';
 
 export default function RootLayout({
   children,
@@ -18,7 +19,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: themeScript
+            __html: themeScript,
           }}
         />
       </head>
@@ -26,7 +27,9 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <ThemeProvider>
             <CustomThemeProvider>
-              <main className="flex-1">{children}</main>
+              <ClientProviders>
+                <main className="flex-1">{children}</main>
+              </ClientProviders>
             </CustomThemeProvider>
           </ThemeProvider>
         </div>
