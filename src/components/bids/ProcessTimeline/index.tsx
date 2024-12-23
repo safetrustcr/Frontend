@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaHome, FaMoneyBill, FaBell } from 'react-icons/fa';
+import { GiReceiveMoney } from 'react-icons/gi';
+import { GrDocumentLocked } from 'react-icons/gr';
 
 const Process: React.FC = () => {
   return (
@@ -14,14 +16,12 @@ const Process: React.FC = () => {
           text: 'Step 2 description',
         },
         {
-          // Use icon1.jpg for Step 3
-          image: '/img/icon1.jpg',
+          icon: GrDocumentLocked,
           color: 'bg-gray-400',
           text: 'Step 3 description',
         },
         {
-          // Use icon2.jpg for Step 4
-          image: '/img/icon2.jpg',
+          icon: GiReceiveMoney,
           color: 'bg-gray-400',
           text: 'Step 4 description',
         },
