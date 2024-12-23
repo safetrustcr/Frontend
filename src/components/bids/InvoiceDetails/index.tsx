@@ -6,7 +6,7 @@ const Details: React.FC = () => {
       <h2 className="text-xl font-bold text-black mb-4">
         Payment batch January 2025
       </h2>
-      <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
         <div>
           <p>
             <strong>Bill to:</strong> john_st@gmail.com
@@ -66,13 +66,13 @@ const Details: React.FC = () => {
         </table>
       </div>
       <div className="text-sm text-black flex flex-col items-start mt-2">
-        <div className="flex justify-between w-full mb-0.5">
+        <div className="flex flex-col sm:flex-row justify-between w-full mb-0.5">
           <p className="font-bold text-black mr-2">Subtotal:</p>
           <p>$4,000</p>
           <p className="font-bold text-black ml-2">Total:</p>
           <p>$8,000</p>
         </div>
-        <div className="flex justify-between w-full mt-0.5">
+        <div className="flex flex-col sm:flex-row justify-between w-full mt-0.5">
           <p className="font-bold text-black">Discount (10%)</p>
         </div>
       </div>

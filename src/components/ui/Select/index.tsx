@@ -13,9 +13,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         className={cn(
           'w-full p-2 transition-colors text-gray-900',
           {
-            'border rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500':
+            'border rounded-md focus:ring-2 focus:ring-default-color focus:border-default-color':
               variant === 'default',
-            'border-b border-t-0 border-x-0 border-gray-400 focus:ring-0 focus:border-orange-500 bg-transparent appearance-none':
+            'border-b border-t-0 border-x-0 border-gray-400 focus:ring-0 focus:border-default-color bg-transparent appearance-none':
               variant === 'underlined',
           },
           className

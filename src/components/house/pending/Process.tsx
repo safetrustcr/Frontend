@@ -17,7 +17,7 @@ const Process: React.FC = () => {
           >
             <step.icon className="w-4 h-4" />
           </div>
-          <span className="text-gray-700 text-sm">{step.text}</span>
+          <span className="text-light-primary dark:text-dark-primary text-sm">{step.text}</span>
         </div>
       ))}
     </div>

@@ -21,7 +21,7 @@ const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps> = ({
 
   const getStrengthColor = (score: number) => {
     if (score === 0) return 'red';
-    if (score === 1) return 'orange';
+    if (score === 1) return 'default-color';
     if (score === 2) return 'yellow';
     if (score === 3) return 'lightgreen';
     return 'green';

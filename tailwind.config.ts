@@ -14,6 +14,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'default-color': '#003075',
         'custom-dark': '#1A1D26',
         'custom-orange': '#F97316',
         'custom-grey': '#656464',

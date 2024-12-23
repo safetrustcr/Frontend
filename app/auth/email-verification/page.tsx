@@ -137,7 +137,7 @@ const EmailVerificationForm = () => {
           <button
             onClick={handleResendCode}
             disabled={isResending}
-            className="w-full py-3 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:opacity-50"
+            className="w-full py-3 px-4 bg-default-color text-white rounded-md hover:bg-default-color disabled:opacity-50"
           >
             {isResending
               ? t('emailVerification.sendBtn.firstTitle')

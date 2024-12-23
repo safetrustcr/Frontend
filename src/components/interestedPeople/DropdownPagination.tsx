@@ -56,7 +56,7 @@ const DropdownPagination: React.FC<DropdownPaginationProps> = ({
             onClick={toggleDropdown}
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 
                                  text-gray-700 bg-white border border-gray-300 rounded-lg 
-                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-orange-500
+                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-default-color
                                  transition-colors duration-200 dark:bg-transparent dark:border-gray-700 dark:text-gray-500"
           >
             <span className="inline dark:text-gray-500">{itemsPerPage}</span>

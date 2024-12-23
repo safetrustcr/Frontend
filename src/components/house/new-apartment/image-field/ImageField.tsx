@@ -37,7 +37,7 @@ const ImageField = () => {
         >
           <div
             {...dropzone1.getRootProps()}
-            className={`relative flex items-center justify-center border-dashed border-2 rounded-lg text-center cursor-pointer ${getDropzoneClass(
+            className={`relative flex items-center justify-center border-dashed border-2 rounded-lg text-center cursor-pointer bg-light-secondary dark:bg-dark-surface ${getDropzoneClass(
               isDragging1
             )}`}
             style={{ width: '100%', height: '100%' }}
@@ -80,7 +80,7 @@ const ImageField = () => {
               >
                 <div
                   {...dropzone.getRootProps()}
-                  className={`relative flex items-center justify-center border-dashed border-2 rounded-lg text-center cursor-pointer ${getDropzoneClass(
+                  className={`relative flex items-center justify-center border-dashed border-2 rounded-lg text-center cursor-pointer bg-light-secondary dark:bg-dark-surface ${getDropzoneClass(
                     isDragging
                   )}`}
                   style={{ width: '100%', height: '100%' }}

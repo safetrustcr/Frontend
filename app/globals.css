@@ -7,6 +7,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --transition-duration: 0.3s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,4 +21,11 @@ body {
   color: var(--background);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+*, *::before, *::after {
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease,
+              border-color var(--transition-duration) ease,
+              box-shadow var(--transition-duration) ease;
 }

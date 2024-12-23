@@ -1,11 +1,10 @@
 'use client';
 import { useTranslation } from 'react-i18next';
-import Link from 'next/link';
 
 const Sidebar: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <div className="w-[20%] bg-white p-6 border-r dark:border-gray-700 dark:bg-dark-surface">
+    <div className="bg-white p-6 border-r dark:border-gray-700 dark:bg-dark-surface lg:w-[20%] w-full lg:mb-0 mb-4 sm:w-[80%] sm:p-4">
       <div className="mb-8">
         <h3 className="text-lg font-bold text-gray-800 mb-4 dark:text-gray-200">
           {t('sideBar.title')}
@@ -15,7 +14,7 @@ const Sidebar: React.FC = () => {
             <input
               type="checkbox"
               id="category1"
-              className="w-4 h-4 text-custom-orange border-gray-300 rounded focus:ring-custom-orange"
+              className="w-4 h-4 text-default-color border-gray-300 rounded focus:ring-default-color"
               defaultChecked
             />
             <label
@@ -29,7 +28,7 @@ const Sidebar: React.FC = () => {
             <input
               type="checkbox"
               id="category2"
-              className="w-4 h-4 text-custom-orange border-gray-300 rounded focus:ring-custom-orange"
+              className="w-4 h-4 text-default-color border-gray-300 rounded focus:ring-default-color"
               defaultChecked
             />
             <label
@@ -43,7 +42,7 @@ const Sidebar: React.FC = () => {
             <input
               type="checkbox"
               id="category3"
-              className="w-4 h-4 text-gray-300 border-gray-300 rounded focus:ring-custom-orange"
+              className="w-4 h-4 text-default-color border-gray-300 rounded focus:ring-default-color"
             />
             <label
               htmlFor="category3"

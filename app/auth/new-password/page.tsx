@@ -46,7 +46,7 @@ export default function NewPassword() {
         />
         <button
           type="submit"
-          className="w-[180px] mx-auto block bg-[#F47521] text-white py-2 rounded-lg hover:bg-orange-600 active:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-300 ease-in-out flex justify-center items-center"
+          className="w-[180px] mx-auto block bg-default-color text-white py-2 rounded-lg hover:bg-default-color active:bg-default-color disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-300 ease-in-out flex justify-center items-center"
           disabled={isLoading}
         >
           {isLoading ? (

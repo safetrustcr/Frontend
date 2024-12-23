@@ -10,7 +10,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
 }) => {
   return (
     <select
-      className="border border-gray-300 dark:border-gray-700 rounded-l-lg px-4 py-2 bg-gray-50 dark:bg-dark-surface text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-colors"
+      className="border border-gray-300 dark:border-gray-700 rounded-l-lg px-4 py-2 bg-gray-50 dark:bg-dark-surface text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-default-color dark:focus:ring-default-color transition-colors"
       defaultValue={defaultValue}
     >
       {countryData.map((country) => (

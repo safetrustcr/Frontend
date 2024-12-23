@@ -235,7 +235,7 @@ const RegisterForm: React.FC = () => {
       <button
         type="submit"
         disabled={isSubmitting || Object.keys(errors).length > 0}
-        className="w-full bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors mt-8"
+        className="w-full bg-default-color text-white py-3 rounded-md hover:bg-default-color disabled:opacity-50 disabled:cursor-not-allowed transition-colors mt-8"
       >
         {isSubmitting ? 'Creating Account...' : 'Create Account'}
       </button>

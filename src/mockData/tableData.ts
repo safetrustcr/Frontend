@@ -1,3 +1,4 @@
+import { Property } from '@/@types/property';
 import { TableData } from '@/@types/table';
 
 export const MOCK_DATA: TableData[] = [
@@ -160,5 +161,58 @@ export const MOCK_DATA: TableData[] = [
     wallet: 'XR6ZXCV34',
     offerDate: '28/12/2024',
     status: 'pending',
+  },
+];
+
+export const MOCK_DATA_PROPERTY_LIST: Property[] = [
+  {
+    image: '/img/house1.jpg',
+    title: 'La sabana sur',
+    address: '329 Calle Curridabat, patio estación, San José',
+    price: '26648',
+    promoted: true,
+    beds: 2,
+    baths: 1,
+    petFriendly: false,
+  },
+  {
+    image: '/img/house1.jpg',
+    title: 'La sabana norte',
+    address: '329 Calle Curridabat, patio estación, San José',
+    price: '4058',
+    promoted: false,
+    beds: 4,
+    baths: 2,
+    petFriendly: true,
+  },
+  {
+    image: '/img/house1.jpg',
+    title: 'Moravia',
+    address: 'San Jeronimo, Moravia, San José',
+    price: '43000',
+    promoted: false,
+    beds: 1,
+    baths: 1,
+    petFriendly: true,
+  },
+  {
+    image: '/img/house1.jpg',
+    title: 'Desamparados',
+    address: '329 El Provenir, Desamparados, San José',
+    price: '258',
+    promoted: true,
+    beds: 6,
+    baths: 3,
+    petFriendly: true,
+  },
+  {
+    image: '/img/house1.jpg',
+    title: 'Alajuela',
+    address: 'Hospital, Alajuela, Alajuela',
+    price: '73520',
+    promoted: true,
+    beds: 5,
+    baths: 2,
+    petFriendly: true,
   },
 ];

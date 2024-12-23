@@ -10,19 +10,18 @@ const PaidStateBidRequest: React.FC = () => {
     <div className="w-full bg-gray-50 min-h-screen">
       {/* Header Principal */}
       <MainHeader />
-      <div className="px-10 py-8">
+      <div className="px-4 sm:px-10 py-8">
         {/* Encabezado de la sección */}
         <Header />
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
           {/* Detalles */}
-          <div className="col-span-8 bg-white shadow rounded p-4">
-            <h2>Details Section</h2>
+          <div className="col-span-1 sm:col-span-8 bg-white shadow rounded p-4">
+            <h2 className="text-xl font-semibold mb-4">Details Section</h2>
             <Details />
           </div>
           {/* Notas y Proceso */}
-          <div className="col-span-4">
+          <div className="col-span-1 sm:col-span-4">
             <div className="bg-white shadow rounded p-4 mb-6">
-              {/* Aquí se elimina el encabezado redundante */}
               <Notes />
             </div>
             <div className="bg-white shadow rounded p-4">

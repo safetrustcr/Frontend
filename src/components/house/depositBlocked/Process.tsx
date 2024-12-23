@@ -4,7 +4,7 @@ import { FaHome, FaMoneyBill, FaFileAlt, FaUsers } from 'react-icons/fa';
 const Process: React.FC = () => {
   return (
     <div className="relative mt-4 ml-4">
-      <div className="absolute w-0.5 bg-gray-300 h-full left-4"></div>
+      <div className="absolute w-0.5 bg-light-secondary dark:bg-dark-primary h-full left-4"></div>
       {[
         { icon: FaHome, color: 'bg-green-500', text: 'Step 1 description' },
         {
@@ -21,7 +21,7 @@ const Process: React.FC = () => {
           >
             <step.icon className="w-4 h-4" />
           </div>
-          <span className="text-gray-700 text-sm">{step.text}</span>
+          <span className="text-light-secondary dark:text-dark-primary text-sm">{step.text}</span>
         </div>
       ))}
     </div>

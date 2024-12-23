@@ -3,7 +3,7 @@ import LoginCard from '@/components/auth/login/LoginCard';
 
 const SignupPage: React.FC = () => {
   return (
-    <div>
+    <div className="bg-light-primary dark:bg-dark-background">
       <LoginCard />
     </div>
   );

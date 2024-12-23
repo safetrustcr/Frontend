@@ -37,7 +37,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
           className="w-full h-48 object-cover"
         />
         {promoted && (
-          <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded">
+          <span className="absolute top-2 left-2 bg-default-color text-white text-xs font-semibold px-2 py-1 rounded">
             {t('propertyList.propertyCard.promo')}
           </span>
         )}

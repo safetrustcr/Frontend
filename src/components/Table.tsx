@@ -157,11 +157,13 @@ export function Table({
                               color="blue-gray"
                               {...({} as any)}
                             >
-                              <EllipsisHorizontalIcon className="h-10 w-10 text-custom-orange" />
+                              <EllipsisHorizontalIcon className="h-10 w-10 text-default-color" />
                             </IconButton>
                           </MenuHandler>
                         </Tooltip>
-                        <MenuList {...({} as any)}>
+                        <MenuList {...({} as any)}
+                          className="dark:bg-dark-surface"
+                        >
                           <MenuItem
                             onClick={() => onActionClick('accept', item)}
                             {...({} as any)}

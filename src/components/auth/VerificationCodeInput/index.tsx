@@ -46,7 +46,7 @@ export const VerificationCodeInput: React.FC<Props> = ({
           value={digit}
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e.key)}
-          className="w-12 h-12 text-center text-xl border rounded-md focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-black"
+          className="w-12 h-12 text-center text-xl border rounded-md focus:border-default-color focus:ring-1 focus:ring-default-color text-black"
         />
       ))}
     </div>

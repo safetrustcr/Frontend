@@ -17,11 +17,11 @@ const Process: React.FC = () => {
       ].map((step, index) => (
         <div key={index} className="flex items-center mb-6 gap-4 relative">
           <div
-            className={`relative z-10 w-8 h-8 ${step.color} text-white flex items-center justify-center rounded-full`}
+             className={`relative z-10 w-8 h-8 ${step.color} text-white flex items-center justify-center rounded-full`}
           >
             <step.icon className="w-4 h-4" />
           </div>
-          <span className="text-gray-700 text-sm">{step.text}</span>
+          <span className="text-light-primary dark:text-dark-primary text-sm">{step.text}</span>
         </div>
       ))}
     </div>

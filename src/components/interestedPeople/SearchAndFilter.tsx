@@ -56,7 +56,7 @@ export default function SearchAndFilter({
           onChange={(e) => onSearch(e.target.value)}
           className="w-full sm:w-2/3 lg:w-1/2 text-black placeholder:text-gray-500 py-2 pl-10 pr-4 
                              bg-white border border-gray-300 rounded-full shadow-sm
-                             focus:border-custom-orange focus:outline-none focus:ring-1 focus:ring-custom-orange
+                             focus:border-default-color focus:outline-none focus:ring-1 focus:ring-default-color
                              transition-colors duration-200 dark:bg-transparent dark:border-gray-700 dark:text-gray-500"
         />
       </div>
@@ -67,7 +67,7 @@ export default function SearchAndFilter({
             onClick={toggleDateRange}
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 
                                  text-gray-700 bg-white border border-gray-300 rounded-lg 
-                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-orange-500
+                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-default-color
                                  transition-colors duration-200 dark:bg-transparent dark:border-gray-700 dark:text-gray-500"
           >
             <FiCalendar className="w-4 h-4" />
@@ -96,7 +96,7 @@ export default function SearchAndFilter({
             onClick={toggleStatus}
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 
                                  text-gray-700 bg-white border border-gray-300 rounded-lg 
-                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-orange-500
+                                 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-default-color
                                  transition-colors duration-200 dark:bg-transparent dark:border-gray-700 dark:text-gray-500"
           >
             <FiTag className="w-4 h-4" />

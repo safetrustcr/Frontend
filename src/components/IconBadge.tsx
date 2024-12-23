@@ -14,7 +14,7 @@ export default function IconBadge({
     <div
       className={`w-8 h-8 ${bgColor} rounded-full grid place-content-center`}
     >
-      <Icon className={`w-6 h-6 text-custom-orange`} />
+      <Icon className={`w-6 h-6 text-default-color`} />
     </div>
   );
 }

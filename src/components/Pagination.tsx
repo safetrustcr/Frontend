@@ -73,7 +73,7 @@ const Pagination: React.FC<PaginationProps> = ({
             onClick={() => onPageChange(pageNumber as number)}
             className={`px-4 py-1 rounded-md border-2 ${
               currentPage === pageNumber
-                ? 'bg-custom-orange text-white dark:bg-dark-surface3 dark:border-custom-orange'
+                ? 'bg-default-color text-white dark:bg-dark-surface3 dark:border-default-color'
                 : 'text-gray-700 hover:bg-gray-100 dark:bg-dark-surface dark:text-gray-500 dark:hover:bg-dark-surface2 dark:border-gray-600'
             }`}
             aria-current={currentPage === pageNumber ? 'page' : undefined}

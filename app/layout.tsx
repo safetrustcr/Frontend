@@ -6,13 +6,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from '@material-tailwind/react';
 import { ThemeProvider as CustomThemeProvider } from '@/providers/ThemeProvider';
 import '../src/i18n/config';
+import themeScript from '@/utils/themeScript';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeScript
+          }}
+        />
+      </head>
       <body className="antialiased font-inter" suppressHydrationWarning={true}>
         <div className="min-h-screen flex flex-col">
           <ThemeProvider>

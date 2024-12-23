@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 const ProfileForm: React.FC = () => {
   const inputClasses =
-    'border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-colors';
+    'border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-default-color dark:focus:ring-default-color transition-colors';
   const { t } = useTranslation();
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-black dark:text-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-light-primary dark:text-dark-primary">
       <input
         type="text"
         placeholder={t('profile.nameHolder')}

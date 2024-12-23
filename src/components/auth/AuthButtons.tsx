@@ -56,7 +56,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({ action }) => {
       <button
         onClick={handleGoogleLogin}
         type="button"
-        className="w-full py-2 px-4 border text-black border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-100"
+        className="w-full py-2 px-4 border text-light-primary dark:text-dark-primary border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
       >
         <FcGoogle className="w-5 h-5 mr-2" />
         {buttonText} with Google
