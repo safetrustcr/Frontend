@@ -31,7 +31,7 @@ export interface GetUserQuery {
 type UserState = {
   loading: boolean;
   error: ApolloError | null;
-  user: User | null;
+  user: User;
   userWallets: UserWallet[];
   setLoading: (loading: boolean) => void;
   setError: (error: ApolloError | null) => void;
@@ -39,16 +39,31 @@ type UserState = {
   setUserWallets: (userWallets: UserWallet[]) => void;
 };
 
+const defaultUser: User = {
+  id: 'default',
+  email: 'randall@safetrust.io',
+  first_name: 'Randall',
+  last_name: 'Valenciano',
+  summary:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+  phone_number: '6498 6325',
+  country_code: '+506',
+  location: 'Costa Rica, San José',
+  profile_image_url: '/img/person.png',
+  created_at: new Date(),
+  updated_at: new Date(),
+};
+
 export const useUserStore = create<UserState>()(
   persist(
     devtools((set) => ({
-      user: null,
+      user: defaultUser,
       userWallets: [],
       loading: false,
       error: null,
       setLoading: (loading: boolean) => set({ loading }),
       setError: (error: ApolloError | null) => set({ error }),
-      setUser: (user: User | null) => set({ user }),
+      setUser: (user: User) => set({ user }),
       setUserWallets: (userWallets: UserWallet[]) => set({ userWallets }),
     })),
     {

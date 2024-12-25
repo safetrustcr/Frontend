@@ -7,7 +7,7 @@ const ProfilePicture: React.FC = () => {
   return (
     <div className="relative w-24 h-24">
       <img
-        src={user?.profile_image_url || 'img/person.png'}
+        src={user?.profile_image_url}
         alt="Profile"
         className="w-full h-full rounded-full object-cover border border-gray-300"
       />

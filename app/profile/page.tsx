@@ -11,11 +11,9 @@ import {
   UPDATE_USER_RECORD,
 } from '@/graphql/queries/userMutations.graphql';
 import { ApolloError, useMutation } from '@apollo/client';
-import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import LoadingSkeleton from '@/components/profile/LoadingSkeleton';
 import { useUserStore } from '@/store/userStore/user';
-
 const Home: React.FC = () => {
   const { user, loading, setUser } = useUserStore();
   const { t } = useTranslation();
@@ -93,10 +91,7 @@ const Home: React.FC = () => {
                 <ProfilePicture />
                 <textarea
                   placeholder={t('profile.summaryHolder')}
-                  defaultValue={
-                    user?.summary ||
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-                  }
+                  value={user?.summary}
                   className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 w-full text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface placeholder-gray-500 dark:placeholder-gray-400"
                   rows={3}
                 />
@@ -104,7 +99,10 @@ const Home: React.FC = () => {
               <ProfileForm />
               <AccountOverview />
               <div className="text-right">
-                <button className="bg-default-color text-white px-4 py-2 rounded-lg hover:bg-default-color transition-colors">
+                <button
+                  className="bg-default-color text-white px-4 py-2 rounded-lg hover:bg-default-color transition-colors"
+                  onClick={handleSave}
+                >
                   {t('profile.overView.saveBtn')}
                 </button>
               </div>
