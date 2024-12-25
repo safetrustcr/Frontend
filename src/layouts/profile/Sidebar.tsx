@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
       </h2>
       <ul className="space-y-2">
         <li className="flex items-center text-default-color font-medium">
-          <FaUser className="mr-2 text-default-color"/>
+          <FaUser className="mr-2 text-default-color" />
           {t('profile.account')}
         </li>
       </ul>

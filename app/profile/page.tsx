@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import Header from '@/layouts/Header';
 import Sidebar from '@/layouts/profile/Sidebar';
 import ProfilePicture from '@/components/profile/ProfilePicture';
@@ -10,29 +11,11 @@ import {
   UPDATE_USER_RECORD,
 } from '@/graphql/queries/userMutations.graphql';
 import { ApolloError, useMutation } from '@apollo/client';
-import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-toastify';
-
+import LoadingSkeleton from '@/components/profile/LoadingSkeleton';
+import { useUserStore } from '@/store/userStore/user';
 const Home: React.FC = () => {
-  const [formData, setFormData] = useState({
-    first_name: 'Randall',
-    last_name: 'Valenciano',
-    summary:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    phone_number: '6498 6325',
-    country_code: '+506',
-    location: 'Costa Rica, San José',
-  });
-
-  const [picture, setPicture] = useState('img/person.png');
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
+  const { user, loading, setUser } = useUserStore();
   const { t } = useTranslation();
 
   // GraphQL mutations
@@ -42,12 +25,12 @@ const Home: React.FC = () => {
   const handleSave = async () => {
     try {
       const input = {
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        summary: formData.summary,
-        phone_number: formData.phone_number,
-        country_code: formData.country_code,
-        location: formData.location,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        summary: user.summary,
+        phone_number: user.phone_number,
+        country_code: user.country_code,
+        location: user.location,
       };
       const userId = '97633789-d1ac-4526-80dc-d0a92ff3502e'; // Obtained from User table
 
@@ -59,7 +42,10 @@ const Home: React.FC = () => {
       const imageKey = 'cat';
 
       await updateProfileImage({ variables: { userId, imageUrl, imageKey } });
-      setPicture(imageUrl);
+      setUser({
+        ...user,
+        profile_image_url: imageUrl,
+      });
       toast.success('User profile updated successfully', {
         position: 'top-center',
       });
@@ -93,38 +79,35 @@ const Home: React.FC = () => {
       <Header />
       <div className="bg-white dark:bg-dark-surface2 shadow-lg dark:shadow-gray-900 rounded-lg p-8 w-full max-w-5xl mx-auto mt-8 flex flex-col lg:flex-row h-full">
         <Sidebar />
-        <div className="w-full lg:w-3/4 pl-0 lg:pl-8 mt-6 lg:mt-0 overflow-hidden">
-          <h1 className="text-2xl font-semibold mb-6 text-black dark:text-gray-200">
-            {t('profile.title')}
-          </h1>
-          <div className="flex flex-col lg:flex-row items-center gap-6 mb-6">
-            <ProfilePicture src={picture} />
-            <textarea
-              name="summary"
-              placeholder={t('profile.summaryHolder')}
-              value={formData.summary}
-              className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 w-full text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface placeholder-gray-500 dark:placeholder-gray-400"
-              onChange={handleChange}
-              rows={3}
-            />
-          </div>
-          <ProfileForm
-            first_name={formData.first_name}
-            last_name={formData.last_name}
-            phone_number={formData.phone_number}
-            country_code={formData.country_code}
-            location={formData.location}
-            onInputChange={handleChange}
-          />
-          <AccountOverview />
-          <div className="text-right mt-6">
-            <button
-              className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
-              onClick={handleSave}
-            >
-              {t('profile.overView.saveBtn')}
-            </button>
-          </div>
+        <div className="w-3/4 pl-8 overflow-hidden">
+          {loading ? (
+            <LoadingSkeleton />
+          ) : (
+            <div>
+              <h1 className="text-2xl font-semibold mb-6 text-black dark:text-gray-200">
+                {t('profile.title')}
+              </h1>
+              <div className="flex items-center gap-6 mb-6">
+                <ProfilePicture />
+                <textarea
+                  placeholder={t('profile.summaryHolder')}
+                  value={user?.summary}
+                  className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 w-full text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface placeholder-gray-500 dark:placeholder-gray-400"
+                  rows={3}
+                />
+              </div>
+              <ProfileForm />
+              <AccountOverview />
+              <div className="text-right">
+                <button
+                  className="bg-default-color text-white px-4 py-2 rounded-lg hover:bg-default-color transition-colors"
+                  onClick={handleSave}
+                >
+                  {t('profile.overView.saveBtn')}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

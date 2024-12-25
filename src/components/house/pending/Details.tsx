@@ -58,7 +58,7 @@ const Details: React.FC = () => {
         />
       </div>
       <div className="flex items-center text-light-primary dark:text-dark-primary text-sm mt-6">
-        <MdLocationOn className="text-default-color w-5 h-5 mr-2"/>
+        <MdLocationOn className="text-default-color w-5 h-5 mr-2" />
         <span>329 Calle Santos, Paseo Colón, San José</span>
       </div>
       <div className="flex gap-4 mt-4 text-default-color">
