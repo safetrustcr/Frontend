@@ -7,6 +7,8 @@ import PropertyCard from './PropertyCard';
 import { useTranslation } from 'react-i18next';
 import { MOCK_DATA_PROPERTY_LIST } from '@/mockData/tableData';
 import { Property } from '@/@types/property';
+import { GET_NEARBY_APARTMENTS } from '@/graphql/queries/getNearbyApart.graphql';
+import { useQuery } from '@apollo/client/react';
 
 const sortByPrice = (propertyA: Property, propertyB: Property) => {
   return parseInt(propertyA.price) - parseInt(propertyB.price);
@@ -46,6 +48,21 @@ const PropertyList: React.FC = () => {
   const [filterOption, setFilterOption] = useState<string>(
     'Todos los apartamentos'
   );
+
+  const variables = {
+    coordinates: '(9.9281,-84.0907)', // San José coordinates
+    radius: 5000, // 5km radius
+    minPrice: 3200,
+    maxPrice: 206000,
+    category: ['Family', 'Students'],
+    bedrooms: 2,
+  };
+
+  // const { data, loading } = useQuery(GET_NEARBY_APARTMENTS, {
+  //   variables
+  // });
+
+  // console.log(data);
 
   const handleCardClick = () => {
     router.push('/house');
