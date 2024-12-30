@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { MOCK_DATA_PROPERTY_LIST } from '@/mockData/tableData';
 import { Property } from '@/@types/property';
 import { GET_NEARBY_APARTMENTS } from '@/graphql/queries/getNearbyApart.graphql';
-import { useQuery } from '@apollo/client/react';
+import { useQuery } from '@apollo/client';
 
 const sortByPrice = (propertyA: Property, propertyB: Property) => {
   return parseInt(propertyA.price) - parseInt(propertyB.price);
@@ -50,19 +50,48 @@ const PropertyList: React.FC = () => {
   );
 
   const variables = {
-    coordinates: '(9.9281,-84.0907)', // San José coordinates
-    radius: 5000, // 5km radius
-    minPrice: 3200,
-    maxPrice: 206000,
-    category: ['Family', 'Students'],
-    bedrooms: 2,
+    coordinates: [-84.0807, 9.9282],
+    radius: 10,
+    minPrice: 1000,
+    maxPrice: 2500,
   };
 
-  // const { data, loading } = useQuery(GET_NEARBY_APARTMENTS, {
-  //   variables
-  // });
+  const { data, loading, error } = useQuery(GET_NEARBY_APARTMENTS, {
+    variables,
+  });
 
-  // console.log(data);
+  // Verifica si la consulta está cargando o tiene errores
+  if (loading) {
+    console.log('Cargando...');
+  } else if (error) {
+    console.error('Error en la consulta:', error);
+    console.log(
+      'Detalles del error:',
+      error.networkError || error.graphQLErrors
+    );
+  } else if (data && data.find_nearby_apartments) {
+    // Mapea los valores de los apartamentos y extrae los campos que quieres mostrar
+    const apartments = data.find_nearby_apartments.map(
+      (apartment: {
+        id: any;
+        name: any;
+        price: any;
+        distance: any;
+        apartment_images: { url: any }[];
+        bedrooms: any;
+        bathrooms: any;
+        is_pet_friendly: any;
+        promoted: any;
+      }) => ({
+        id: apartment.id,
+        name: apartment.name,
+        price: apartment.price,
+        distance: apartment.distance,
+      })
+    );
+
+    console.log('Apartamentos cercanos:', apartments);
+  }
 
   const handleCardClick = () => {
     router.push('/house');

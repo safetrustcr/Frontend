@@ -1,35 +1,41 @@
 import { gql } from '@apollo/client';
 
 export const GET_NEARBY_APARTMENTS = gql`
-  query GetNearbyApartments(
-      $coordinates: point!,
-      $radius: float!,
-      $minPrice: numeric,
-      $maxPrice: numeric,
-      $category: [String!],
-      $bedrooms: Int
-    ) {
-      find_nearby_apartments(
-        args: {
-          search_location: $coordinates,
-          radius_meters: $radius,
-          min_price: $minPrice,
-          max_price: $maxPrice
+  query GetNearbyApartments(  
+  $coordinates: point!,   
+  $radius: Float!,   
+  $minPrice: numeric,   
+  $maxPrice: numeric  
+  ) {  
+    apartments(where: {  
+      price: {  
+        _gte: $minPrice,  
+        _lte: $maxPrice  
+      },  
+      location_area: {  
+        _st_d_within: {  
+          distance: $radius,  
+          from: {  
+            type: "Point",  
+            coordinates: $coordinates  
+          }  
+        }  
+      }  
+    }) {
+      id
+      name
+      price
+      is_available
+      location_area
+      coordinates
+      apartment_images {
+        image_url
+      }
+      apartment_images_aggregate {
+        nodes {
+          image_url
         }
-      ) {
-        id
-        name
-        price
-        distance
-        coordinates
-        # Additional fields through relationships
-        apartment_images(where: {is_primary: {_eq: true}}) {
-          url
-        }
-        bedrooms
-        bathrooms
-        is_pet_friendly
-        promoted
       }
     }
+  }
 `;
