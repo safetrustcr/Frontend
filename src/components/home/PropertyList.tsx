@@ -49,50 +49,6 @@ const PropertyList: React.FC = () => {
     'Todos los apartamentos'
   );
 
-  const variables = {
-    coordinates: [-84.0807, 9.9282],
-    radius: 10,
-    minPrice: 1000,
-    maxPrice: 2500,
-  };
-
-  const { data, loading, error } = useQuery(GET_NEARBY_APARTMENTS, {
-    variables,
-  });
-
-  // Verifica si la consulta está cargando o tiene errores
-  if (loading) {
-    console.log('Cargando...');
-  } else if (error) {
-    console.error('Error en la consulta:', error);
-    console.log(
-      'Detalles del error:',
-      error.networkError || error.graphQLErrors
-    );
-  } else if (data && data.find_nearby_apartments) {
-    // Mapea los valores de los apartamentos y extrae los campos que quieres mostrar
-    const apartments = data.find_nearby_apartments.map(
-      (apartment: {
-        id: any;
-        name: any;
-        price: any;
-        distance: any;
-        apartment_images: { url: any }[];
-        bedrooms: any;
-        bathrooms: any;
-        is_pet_friendly: any;
-        promoted: any;
-      }) => ({
-        id: apartment.id,
-        name: apartment.name,
-        price: apartment.price,
-        distance: apartment.distance,
-      })
-    );
-
-    console.log('Apartamentos cercanos:', apartments);
-  }
-
   const handleCardClick = () => {
     router.push('/house');
   };
