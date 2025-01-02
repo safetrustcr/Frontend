@@ -94,7 +94,7 @@ const Sidebar: React.FC = () => {
                 {suggestion.details}
               </p>
             </div>
-            <button className="absolute top-3 right-3 text-red-500 hover:text-red-700">
+            <button className="absolute top-3 right-3 text-default-color hover:text-red-700">
               <AiOutlineHeart className="w-5 h-5" />
             </button>
             <p className="absolute bottom-3 right-3 text-green-600 font-bold">

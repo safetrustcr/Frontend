@@ -7,7 +7,7 @@ const Process: React.FC = () => {
   return (
     <div className="relative mt-4 ml-4">
       {/* Vertical line */}
-      <div className="absolute w-0.5 bg-gray-300 h-full left-4"></div>
+      <div className="absolute w-0.5 bg-gray-300 dark:bg-gray-600 h-full left-4"></div>
       {[
         { icon: FaHome, color: 'bg-green-500', text: 'Step 1 description' },
         {
@@ -17,15 +17,19 @@ const Process: React.FC = () => {
         },
         {
           icon: GrDocumentLocked,
-          color: 'bg-gray-400',
+          color: 'bg-gray-400 dark:bg-gray-600',
           text: 'Step 3 description',
         },
         {
           icon: GiReceiveMoney,
-          color: 'bg-gray-400',
+          color: 'bg-gray-400 dark:bg-gray-600',
           text: 'Step 4 description',
         },
-        { icon: FaBell, color: 'bg-gray-400', text: 'Step 5 description' },
+        {
+          icon: FaBell,
+          color: 'bg-gray-400 dark:bg-gray-600',
+          text: 'Step 5 description',
+        },
       ].map((step, index) => (
         <div key={index} className="flex items-center mb-6 gap-4 relative">
           {/* Icon container */}
@@ -33,10 +37,8 @@ const Process: React.FC = () => {
             className={`relative z-10 w-10 h-10 ${step.color} text-white flex items-center justify-center rounded-full`}
           >
             {step.icon ? (
-              // Render icon if it exists
               <step.icon className="w-5 h-5" />
             ) : (
-              // Render image if `image` exists
               <img
                 src={step.image}
                 alt={`Step ${index + 1} icon`}
@@ -45,7 +47,9 @@ const Process: React.FC = () => {
             )}
           </div>
           {/* Step description */}
-          <span className="text-gray-700 text-sm">{step.text}</span>
+          <span className="text-gray-700 dark:text-gray-300 text-sm">
+            {step.text}
+          </span>
         </div>
       ))}
     </div>

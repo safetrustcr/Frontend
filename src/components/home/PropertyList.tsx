@@ -134,9 +134,9 @@ const PropertyList: React.FC = () => {
 
       <div className="flex flex-wrap justify-start sm:space-x-2 mb-8">
         <button
-          className={`px-4 py-2 text-sm border border-gray-300 dark:text-gray-200 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:text-black mb-2 sm:mb-0 ${
+          className={`px-4 py-2 text-sm border border-gray-300 rounded-full text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-200 mb-2 sm:mb-0 ${
             filterOption === 'Todos los apartamentos'
-              ? 'bg-gray-200 dark:text-black'
+              ? 'bg-gray-200 text-gray-900 dark:bg-black dark:text-gray-200'
               : ''
           }`}
           onClick={() => handleFilterChange('Todos los apartamentos')}

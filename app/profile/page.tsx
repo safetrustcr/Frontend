@@ -18,7 +18,6 @@ const Home: React.FC = () => {
   const { user, loading, setUser } = useUserStore();
   const { t } = useTranslation();
 
-  // GraphQL mutations
   const [updateUser] = useMutation(UPDATE_USER_RECORD);
   const [updateProfileImage] = useMutation(UPDATE_PROFILE_IMAGE);
 
@@ -32,7 +31,7 @@ const Home: React.FC = () => {
         country_code: user.country_code,
         location: user.location,
       };
-      const userId = '97633789-d1ac-4526-80dc-d0a92ff3502e'; // Obtained from User table
+      const userId = '97633789-d1ac-4526-80dc-d0a92ff3502e';
 
       await updateUser({
         variables: { userId, input },
