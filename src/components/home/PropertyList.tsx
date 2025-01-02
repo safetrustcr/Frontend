@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { MOCK_DATA_PROPERTY_LIST } from '@/mockData/tableData';
 import { Property } from '@/@types/property';
 import NearbyApartments from '@/components/NearbyApartments';
-import { transformQueryToProperties } from '@/@types/queryToProperty'; // Asegúrate de importar la función
+import { transformQueryToProperties } from '@/@types/queryToProperty';
 
 const sortByPrice = (propertyA: Property, propertyB: Property) => {
   return parseInt(propertyA.price) - parseInt(propertyB.price);
@@ -37,7 +37,17 @@ const sortList: sortListInterface[] = [
   { id: 4, name: 'propertyList.sortBy.orderFour', sortFn: undefined },
 ];
 
-const PropertyList: React.FC = () => {
+interface PropertyListProps {
+  minPrice: number;
+  maxPrice: number;
+  selectedLocation: string;
+}
+
+const PropertyList: React.FC<PropertyListProps> = ({
+  minPrice,
+  maxPrice,
+  selectedLocation,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [sortOption, setSortOption] = useState<sortListInterface>(sortList[0]);
@@ -68,16 +78,26 @@ const PropertyList: React.FC = () => {
     setFilterOption(filter);
   };
 
-  // Parámetros para la consulta
-  const coordinates: [number, number] = [-84.6307, 9.6182]; // Coordenadas de ejemplo (Nueva York)
-  const radius = 0; // Radio de búsqueda en km
-  const minPrice = 1000; // Precio mínimo
-  const maxPrice = 2500; // Precio máximo
+  // Obtener las coordenadas de la ubicación seleccionada
+  const locations: Record<string, [number, number]> = {
+    'San José': [-84.0807, 9.9282],
+    Heredia: [-84.1207, 9.9782],
+    Alajuela: [-84.2113, 10.0175],
+    Cartago: [-83.9186, 9.8647],
+    Puntarenas: [-84.6307, 9.6182],
+    Guanacaste: [-85.595, 10.4915],
+    Limón: [-83.032, 9.9828],
+  };
+
+  const coordinates: [number, number] = locations[selectedLocation]; // Coordenadas por defecto
+  // const coordinates: [number, number] = [-84.6307, 9.6182]; // Coordenadas de ejemplo (Nueva York)
+
+  const radius = 50; // si desea un busqueda mas exacta bajarle el valor al radio de busqueda
 
   // Uso del hook para obtener los apartamentos cercanos
   const { data, loading, error } = NearbyApartments({
     coordinates,
-    radius,
+    radius, // Radio de búsqueda en metros
     minPrice,
     maxPrice,
   });
@@ -90,7 +110,8 @@ const PropertyList: React.FC = () => {
     }
   }, [data]); // Se ejecuta cuando los datos cambian
   console.log(properties);
-
+  // si desea que se muestren los datos estaticos del tableData cambie la siguiente linea
+  //const filteredProperties = MOCK_DATA_PROPERTY_LIST.filter((property)
   const filteredProperties = properties.filter((property) => {
     if (filterOption === 'Todos los apartamentos') return true;
     if (filterOption === '1 baño') return property.baths === 1;
