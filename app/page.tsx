@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '@/layouts/Header';
 import PropertyList from '@/components/home/PropertyList';
 import Sidebar from '@/layouts/Sidebar';
-import NearbyApartments from '@/components/NearbyApartments';
+// import NearbyApartments from '@/components/NearbyApartments';
 
 const Home: React.FC = () => {
   return (

@@ -1724,6 +1724,13 @@ export type GetNearbyApartmentsQuery = {
       __typename?: 'apartment_image';
       image_url: string;
     }>;
+    address: {
+      city: string;
+      street: string;
+      country: string;
+      postal_code: string;
+      neighborhood: string;
+    };
   }>;
 };
 
@@ -1763,6 +1770,7 @@ export const GetNearbyApartmentsDocument = gql`
           image_url
         }
       }
+      address
     }
   }
 `;

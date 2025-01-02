@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BsSortDownAlt } from 'react-icons/bs';
 import PropertyCard from './PropertyCard';
 import { useTranslation } from 'react-i18next';
 import { MOCK_DATA_PROPERTY_LIST } from '@/mockData/tableData';
 import { Property } from '@/@types/property';
-import { GET_NEARBY_APARTMENTS } from '@/graphql/queries/getNearbyApart.graphql';
-import { useQuery } from '@apollo/client';
+import NearbyApartments from '@/components/NearbyApartments';
+import { transformQueryToProperties } from '@/@types/queryToProperty'; // Asegúrate de importar la función
 
 const sortByPrice = (propertyA: Property, propertyB: Property) => {
   return parseInt(propertyA.price) - parseInt(propertyB.price);
@@ -42,6 +42,7 @@ const PropertyList: React.FC = () => {
   const router = useRouter();
   const [sortOption, setSortOption] = useState<sortListInterface>(sortList[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [properties, setProperties] = useState<Property[]>([]);
   const [propertySort, setPropertySort] = useState<
     ((propertyA: Property, propertyB: Property) => number) | undefined
   >(() => sortByRelevance);
@@ -67,7 +68,30 @@ const PropertyList: React.FC = () => {
     setFilterOption(filter);
   };
 
-  const filteredProperties = MOCK_DATA_PROPERTY_LIST.filter((property) => {
+  // Parámetros para la consulta
+  const coordinates: [number, number] = [-84.6307, 9.6182]; // Coordenadas de ejemplo (Nueva York)
+  const radius = 0; // Radio de búsqueda en km
+  const minPrice = 1000; // Precio mínimo
+  const maxPrice = 2500; // Precio máximo
+
+  // Uso del hook para obtener los apartamentos cercanos
+  const { data, loading, error } = NearbyApartments({
+    coordinates,
+    radius,
+    minPrice,
+    maxPrice,
+  });
+
+  useEffect(() => {
+    if (data) {
+      // Transformar los datos obtenidos de la API
+      const transformedProperties = transformQueryToProperties(data.apartments);
+      setProperties(transformedProperties);
+    }
+  }, [data]); // Se ejecuta cuando los datos cambian
+  console.log(properties);
+
+  const filteredProperties = properties.filter((property) => {
     if (filterOption === 'Todos los apartamentos') return true;
     if (filterOption === '1 baño') return property.baths === 1;
     if (filterOption === '2 dormitorios') return property.beds === 2;
