@@ -42,5 +42,5 @@ Paste any relevant logs, error messages, or console output here
 ### Make sure to follow the Git Guidelines for Atomic Commits and read Contributing Guide
 The Pull request needs to have the format mentioned below in the Git Guideline
 
-- [Issue #34: Contributing Guide ](https://github.com/safetrustcr/Frontend/issues/34)
-- [Issue #35: Git Guidelines](https://github.com/safetrustcr/Frontend/issues/35)
+- [Contributing Guide ](https://github.com/safetrustcr/Frontend/issues/34)
+- [Git Guidelines](https://github.com/safetrustcr/Frontend/issues/35)
