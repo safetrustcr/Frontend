@@ -1,9 +1,6 @@
 ---
-name: Issue Report
-about: Create a detailed report to help improve the project
-title: 'Issue Title: [Brief, descriptive title of the issue]'
-labels: needs-triage
-assignees: ''
+Issue Title
+
 ---
 
 ## Issue Summary
