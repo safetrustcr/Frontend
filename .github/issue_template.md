@@ -1,29 +1,42 @@
-### 📝 Title
-<!-- A clear and concise title of the issue. -->
+---
+name: Issue Report
+about: Create a detailed report to help improve the project
+title: 'Issue Title: [Brief, descriptive title of the issue]'
+labels: needs-triage
+assignees: ''
+---
 
-### 🔍 Description
-<!-- Please provide a detailed description of the issue -->
+## Issue Summary
+Provide a concise overview of the issue (2-3 sentences maximum).
 
-### 🔄 Steps to Reproduce
-<!-- List the steps to reproduce the issue -->
-1. 
-2. 
-3. 
+## Type of Issue
+- [ ] Bug
+- [ ] Feature Request
+- [ ] Documentation
+- [ ] Performance
+- [ ] Security
+- [ ] Other (please specify)
 
-### 👌🏼 Expected Behavior
-<!-- Describe what you expected to happen -->
+## Current Behavior
+Describe what's happening now in detail.
 
-### ✅ Actual Behavior
-<!-- Describe what actually happened -->
+## Expected Behavior
+Describe what should happen instead.
 
-### 🖥️  Environment
-<!-- OS(Operating System), Browser (Browser version), Software Versions (Other relevant versions) -->
+## Reproduction Steps
+1. Start with...
+2. Then...
+3. Next...
+4. Finally...
+5. Observe that...
 
-### 📸 Screenshots/Logs
-<!-- If possible, provide any relevant screenshots or logs to help understand the issue. -->
+## Environment Details
+- Project Version: [e.g., v2.1.0]
+- Operating System: [e.g., Ubuntu 22.04, Windows 11]
+- Browser/Runtime: [e.g., Chrome 120, Node.js 20.0]
+- Additional Tools: [e.g., npm 9.0, yarn 1.22]
 
-### 📚 Additional Information
-<!-- Add any additional information or screenshots about the issue here -->
-
-### ⏳ ETA
-<!-- Please provide an estimated time of completion for when the issue might be resolved. -->
+## Supporting Information
+### Logs
+```plaintext
+Paste any relevant logs, error messages, or console output here
