@@ -40,22 +40,7 @@ Paste any relevant logs, error messages, or console output here
 ```
 
 ### Make sure to follow the Git Guidelines for Atomic Commits and read Contributing Guide
+The Pull request needs to have the format mention below in the Git Guideline
 
 - [Issue #34: Contributing Guide ](https://github.com/safetrustcr/Frontend/issues/34)
 - [Issue #35: Git Guidelines](https://github.com/safetrustcr/Frontend/issues/35)
-
-#### Example Branch Names:
-- `feat/user-registration` 🌟
-- `fix/product-price-validation` 🐛
-- `docs/readme-update` 📖
-- `style/button-styling` 🎨
-
-#### Example Commit Messages:
-- `feat: add user registration support 🌟`
-- `fix: resolve price validation bug 🐛`
-- `docs: update API usage instructions 📖`
-- `style: adjust button alignment 🎨`
-- `perf: optimize database queries ⚡`
-
-
-
