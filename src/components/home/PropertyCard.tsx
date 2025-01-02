@@ -45,7 +45,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
       <div className="p-4">
         <div className="flex items-center justify-between">
           <p className="text-green-600 font-bold text-lg">${price}.00</p>
-          <AiOutlineHeart className="text-gray-400 text-xl cursor-pointer hover:text-red-500" />
+          <AiOutlineHeart className="text-gray-400 text-xl cursor-pointer hover:text-red-800" />
         </div>
         <p className="text-gray-500 text-sm dark:text-gray-200">
           {t('propertyList.propertyCard.perMonth')}

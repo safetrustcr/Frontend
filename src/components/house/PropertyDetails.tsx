@@ -62,7 +62,7 @@ const PropertyDetails: React.FC = () => {
               </h1>
               <button
                 onClick={handleBook}
-                className={`bg-orange-500 text-white px-6 py-1.5 rounded-lg text-sm font-semibold hover:bg-orange-600 ${
+                className={`bg-default-color text-white px-6 py-1.5 rounded-lg text-sm font-semibold hover:bg-orange-600 ${
                   isBooked || loadingBook ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 disabled={isBooked || loadingBook}
@@ -78,7 +78,7 @@ const PropertyDetails: React.FC = () => {
             </div>
 
             <div className="flex justify-between items-center mt-4">
-              <div className="flex items-center text-gray-700 text-sm">
+              <div className="flex items-center text-gray-700 dark:text-gray-100 text-sm">
                 <MdLocationOn className="text-default-color w-5 h-5 mr-2" />
                 {t('propertyDetails.address')}
               </div>
@@ -87,22 +87,22 @@ const PropertyDetails: React.FC = () => {
             <hr className="my-4 border-gray-300" />
 
             <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-              <div className="flex gap-6 text-orange-500 items-center">
+              <div className="flex gap-6 text-default-color items-center">
                 <div className="flex items-center">
                   <FaBed className="w-5 h-5 mr-2" />
-                  <span className="text-gray-700 text-sm">
+                  <span className="text-gray-700 dark:text-gray-100 text-sm">
                     2 {t('common.bed')}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <FaPaw className="w-5 h-5 mr-2" />
-                  <span className="text-gray-700 text-sm">
+                  <span className="text-gray-700 dark:text-gray-100 text-sm">
                     {t('common.pet')}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <FaBath className="w-5 h-5 mr-2" />
-                  <span className="text-gray-700 text-sm">
+                  <span className="text-gray-700 dark:text-gray-100 text-sm">
                     1 {t('common.bathroom')}
                   </span>
                 </div>
@@ -124,7 +124,7 @@ const PropertyDetails: React.FC = () => {
               <h2 className="text-xl font-bold text-black dark:text-gray-200">
                 {t('propertyDetails.detailsTitle')}
               </h2>
-              <p className="text-gray-500 text-sm mt-2">
+              <p className="text-gray-700 dark:text-gray-100 text-sm mt-2">
                 {t('propertyDetails.detailsText')}
               </p>
             </div>
