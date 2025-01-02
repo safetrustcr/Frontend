@@ -38,11 +38,9 @@ Describe what should happen instead.
 ```plaintext
 Paste any relevant logs, error messages, or console output here
 ```
-### Git Guidelines for Atomic Commits
 
-Follow the guidelines for atomic commits to ensure clear and manageable version control.  
+### Make sure to follow the Git Guidelines for Atomic Commits and read Contributing Guide
 
-#### Useful Links:
 - [Issue #34: Contributing Guide ](https://github.com/safetrustcr/Frontend/issues/34)
 - [Issue #35: Git Guidelines](https://github.com/safetrustcr/Frontend/issues/35)
 
