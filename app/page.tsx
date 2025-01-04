@@ -5,9 +5,9 @@ import PropertyList from '@/components/home/PropertyList';
 import Sidebar from '@/layouts/Sidebar';
 
 const Home: React.FC = () => {
-  const [minPrice, setMinPrice] = useState(1200);
+  const [minPrice, setMinPrice] = useState(900);
   const [maxPrice, setMaxPrice] = useState(206000);
-  const [selectedLocation, setSelectedLocation] = useState<string>('San José');
+  const [selectedLocation, setSelectedLocation] = useState<string>('');
 
   const handleMinPriceChange = (value: number) => {
     setMinPrice(value);
@@ -20,21 +20,21 @@ const Home: React.FC = () => {
   const handleLocationChange = (location: string) => {
     setSelectedLocation(location);
   };
-
+  1;
   return (
     <div className="bg-gray-100 min-h-screen dark:bg-dark-background">
       <Header />
       <div className="flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/4 bg-white dark:bg-dark-sidebar p-4">
-          <Sidebar
-            minPrice={minPrice}
-            maxPrice={maxPrice}
-            selectedLocation={selectedLocation}
-            onMinPriceChange={handleMinPriceChange}
-            onMaxPriceChange={handleMaxPriceChange}
-            onLocationChange={handleLocationChange}
-          />
-        </div>
+        {/* Sidebar */}
+        <Sidebar
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          selectedLocation={selectedLocation}
+          onMinPriceChange={handleMinPriceChange}
+          onMaxPriceChange={handleMaxPriceChange}
+          onLocationChange={handleLocationChange}
+        />
+        {/* Main content */}
         <div className="flex-grow p-4">
           <PropertyList
             minPrice={minPrice}

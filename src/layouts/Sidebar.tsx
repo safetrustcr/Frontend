@@ -30,8 +30,24 @@ const Sidebar: React.FC<SidebarProps> = ({
     Limón: [-83.032, 9.9828],
   };
 
+  // Estado para manejar la ubicación seleccionada
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedLocationState, setSelectedLocationState] = useState<
+    string | null
+  >(selectedLocation);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(selectedCategory === category ? null : category);
+  };
+
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onLocationChange(event.target.id);
+    if (event.target.checked) {
+      setSelectedLocationState(event.target.id);
+      onLocationChange(event.target.id);
+    } else {
+      setSelectedLocationState('');
+      onLocationChange('');
+    }
   };
 
   const handleMinPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
   return (
     <div className="bg-white p-6 border-r dark:border-gray-700 dark:bg-dark-surface lg:w-[20%] w-full lg:mb-0 mb-4 sm:w-[80%] sm:p-4">
+      {/* Category */}
       <div className="mb-8">
         <h3 className="text-lg font-bold text-gray-800 mb-4 dark:text-gray-200">
           {t('Category')}
@@ -59,8 +76,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               <input
                 type="checkbox"
                 id={category}
-                className="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500"
-                defaultChecked={index <= -1}
+                className="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500 dark:bg-dark-surface dark:border-gray-500"
+                checked={selectedCategory === category} // Solo marca la casilla si es la categoría seleccionada
+                onChange={() => handleCategoryChange(category)}
               />
               <label
                 htmlFor={category}
@@ -72,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           ))}
         </div>
       </div>
-
+      {/* Price Range */}
       <div className="mb-8">
         <h3 className="text-lg font-bold text-gray-800 mb-4 dark:text-gray-200 whitespace-nowrap">
           {t('Price Range')}
@@ -111,23 +129,24 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
       </div>
-
+      {/* Location */}
       <div className="mb-8">
         <h3 className="text-lg font-bold text-gray-800 mb-4 dark:text-gray-200">
           {t('Location')}
         </h3>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col space-y-4">
           {Object.keys(locations).map((location, index) => (
-            <div className="flex flex-nowrap items-center" key={index}>
+            <div className="flex items-center" key={index}>
               <input
                 type="checkbox"
                 id={location}
-                className="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500"
+                className="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500 dark:bg-dark-surface dark:border-gray-500"
+                checked={selectedLocationState === location}
                 onChange={handleLocationChange}
               />
               <label
                 htmlFor={location}
-                className="ml-3 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap"
+                className="ml-3 text-sm font-medium text-gray-700 dark:text-gray-200"
               >
                 {location}
               </label>

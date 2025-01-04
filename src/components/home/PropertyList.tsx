@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BsSortDownAlt } from 'react-icons/bs';
@@ -59,7 +58,7 @@ const PropertyList: React.FC<PropertyListProps> = ({
   const [filterOption, setFilterOption] = useState<string>(
     'Todos los apartamentos'
   );
-
+  console.log(selectedLocation);
   const handleCardClick = () => {
     router.push('/house');
   };
@@ -78,9 +77,9 @@ const PropertyList: React.FC<PropertyListProps> = ({
     setFilterOption(filter);
   };
 
-  // Obtener las coordenadas de la ubicación seleccionada
+  // Get the coordinates for the selected location
   const locations: Record<string, [number, number]> = {
-    'San José': [-84.0807, 9.9282],
+    'San José': [-84.08333, 9.93333],
     Heredia: [-84.1207, 9.9782],
     Alajuela: [-84.2113, 10.0175],
     Cartago: [-83.9186, 9.8647],
@@ -89,36 +88,42 @@ const PropertyList: React.FC<PropertyListProps> = ({
     Limón: [-83.032, 9.9828],
   };
 
-  const coordinates: [number, number] = locations[selectedLocation]; // Coordenadas por defecto
-  // const coordinates: [number, number] = [-84.6307, 9.6182]; // Coordenadas de ejemplo (Nueva York)
-
-  const radius = 50; // si desea un busqueda mas exacta bajarle el valor al radio de busqueda
-
-  // Uso del hook para obtener los apartamentos cercanos
+  // Get the coordinates of the selected location only if there is a selected location
+  const coordinates: [number, number] | null = selectedLocation
+    ? locations[selectedLocation]
+    : null;
+  const radius = 0.01; // Set the radius for the property search (lower value for more accurate results)
+  // Use the hook to get nearby apartments only if there are valid coordinates
   const { data, loading, error } = NearbyApartments({
-    coordinates,
-    radius, // Radio de búsqueda en metros
+    coordinates: coordinates ?? [-0, 0], // Inicial Value
+    radius,
     minPrice,
     maxPrice,
   });
 
   useEffect(() => {
     if (data) {
-      // Transformar los datos obtenidos de la API
+      // Transform the data from the API
       const transformedProperties = transformQueryToProperties(data.apartments);
       setProperties(transformedProperties);
     }
-  }, [data]); // Se ejecuta cuando los datos cambian
-  console.log(properties);
-  // si desea que se muestren los datos estaticos del tableData cambie la siguiente linea
-  //const filteredProperties = MOCK_DATA_PROPERTY_LIST.filter((property)
-  const filteredProperties = properties.filter((property) => {
-    if (filterOption === 'Todos los apartamentos') return true;
-    if (filterOption === '1 baño') return property.baths === 1;
-    if (filterOption === '2 dormitorios') return property.beds === 2;
-    if (filterOption === '+3 dormitorios') return property.beds >= 3;
-    return true;
-  });
+  }, [data]);
+  // This will execute when the data changes
+  const filteredProperties = selectedLocation
+    ? properties.filter((property) => {
+        if (filterOption === 'Todos los apartamentos') return true;
+        if (filterOption === '1 baño') return property.baths === 1;
+        if (filterOption === '2 dormitorios') return property.beds === 2;
+        if (filterOption === '+3 dormitorios') return property.beds >= 3;
+        return true;
+      })
+    : MOCK_DATA_PROPERTY_LIST.filter((property) => {
+        if (filterOption === 'Todos los apartamentos') return true;
+        if (filterOption === '1 baño') return property.baths === 1;
+        if (filterOption === '2 dormitorios') return property.beds === 2;
+        if (filterOption === '+3 dormitorios') return property.beds >= 3;
+        return true;
+      });
 
   return (
     <div className="px-4 py-8 sm:px-12">
