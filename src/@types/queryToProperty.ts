@@ -7,17 +7,17 @@ export const transformQueryToProperties = (queryResults: any[]): Property[] => {
       image:
         result.apartment_images.length > 0
           ? result.apartment_images[0]
-          : '/img/house1.jpg', // Imagen predeterminada si no existe
-      title: result.name || result.title, // Usa `name` si no existe `title`
-      // Concatenamos la dirección a partir de los campos individuales de `address`
+          : '/img/house1.jpg', // Default image if none exists
+      title: result.name || result.title, // Use `name` if `title` does not exist
+      //Concatenate the address from individual address fields
       address: result.address
         ? `${result.address.street}, ${result.address.neighborhood}, ${result.address.city}, ${result.address.country} - ${result.address.postal_code}`
-        : 'Dirección no disponible', // Direccion predeterminada si no hay datos
+        : 'Dirección no disponible', //Default address if no data is available
       price: result.price?.toString() || '0',
-      promoted: result.is_available ?? true, // Asegúrate de que es un valor booleano
-      beds: result.beds || 2, // Valor por defecto si no existe
-      baths: result.baths || 3, // Valor por defecto si no existe
-      petFriendly: result.petFriendly ?? true, // Asegúrate de que es un valor booleano
+      promoted: result.is_available ?? true,
+      beds: result.beds || 2, // Default value if no data is available
+      baths: result.baths || 3, // Default value if no data is available
+      petFriendly: result.petFriendly ?? true,
     };
   });
 };

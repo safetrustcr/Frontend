@@ -16,8 +16,7 @@ export const NearbyApartments = ({
   const { data, loading, error } = useGetNearbyApartmentsQuery({
     variables: { coordinates, radius, minPrice, maxPrice },
   });
-
   return { data, loading, error };
 };
 
-export default NearbyApartments; // Asegúrate de tener esta línea
+export default NearbyApartments;

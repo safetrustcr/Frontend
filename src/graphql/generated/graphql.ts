@@ -1703,8 +1703,7 @@ export type GetUsersQueryResult = Apollo.QueryResult<
   GetUsersQueryVariables
 >;
 
-////////////////////////////
-
+//Begining of the query for nearby apartments
 export type GetNearbyApartmentsQueryVariables = Exact<{
   coordinates: [number, number];
   radius: number;

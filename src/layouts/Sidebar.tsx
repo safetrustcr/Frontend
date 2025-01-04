@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     Limón: [-83.032, 9.9828],
   };
 
-  // Estado para manejar la ubicación seleccionada
+  // Control the selected location
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedLocationState, setSelectedLocationState] = useState<
     string | null
@@ -77,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 type="checkbox"
                 id={category}
                 className="w-5 h-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500 dark:bg-dark-surface dark:border-gray-500"
-                checked={selectedCategory === category} // Solo marca la casilla si es la categoría seleccionada
+                checked={selectedCategory === category}
                 onChange={() => handleCategoryChange(category)}
               />
               <label

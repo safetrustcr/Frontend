@@ -20,7 +20,6 @@ const Home: React.FC = () => {
   const handleLocationChange = (location: string) => {
     setSelectedLocation(location);
   };
-  1;
   return (
     <div className="bg-gray-100 min-h-screen dark:bg-dark-background">
       <Header />

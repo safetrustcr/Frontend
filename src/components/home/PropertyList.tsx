@@ -95,7 +95,7 @@ const PropertyList: React.FC<PropertyListProps> = ({
   const radius = 0.01; // Set the radius for the property search (lower value for more accurate results)
   // Use the hook to get nearby apartments only if there are valid coordinates
   const { data, loading, error } = NearbyApartments({
-    coordinates: coordinates ?? [-0, 0], // Inicial Value
+    coordinates: coordinates ?? [-0, 0], // // Default value
     radius,
     minPrice,
     maxPrice,
