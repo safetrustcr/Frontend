@@ -58,7 +58,6 @@ const PropertyList: React.FC<PropertyListProps> = ({
   const [filterOption, setFilterOption] = useState<string>(
     'Todos los apartamentos'
   );
-  console.log(selectedLocation);
   const handleCardClick = () => {
     router.push('/house');
   };
@@ -108,7 +107,6 @@ const PropertyList: React.FC<PropertyListProps> = ({
       setProperties(transformedProperties);
     }
   }, [data]);
-  console.log(properties);
   // This will execute when the data changes
   const filteredProperties = selectedLocation
     ? properties.filter((property) => {
