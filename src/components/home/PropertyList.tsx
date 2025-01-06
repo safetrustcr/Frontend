@@ -108,6 +108,7 @@ const PropertyList: React.FC<PropertyListProps> = ({
       setProperties(transformedProperties);
     }
   }, [data]);
+  console.log(properties);
   // This will execute when the data changes
   const filteredProperties = selectedLocation
     ? properties.filter((property) => {
@@ -224,26 +225,34 @@ const PropertyList: React.FC<PropertyListProps> = ({
           {t('propertyList.filterFour')}
         </button>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProperties.sort(propertySort).map((property) => (
-          <div
-            key={property.title}
-            onClick={handleCardClick}
-            className="transform transition-transform hover:scale-105 hover:shadow-lg duration-300 ease-in-out cursor-pointer"
-          >
-            <PropertyCard
-              image={property.image}
-              title={property.title}
-              address={property.address}
-              price={property.price}
-              promoted={property.promoted}
-              beds={property.beds}
-              baths={property.baths}
-              petFriendly={property.petFriendly}
-            />
+        {filteredProperties.length === 0 ? (
+          <div className="col-span-full flex items-center justify-center h-64">
+            <p className="text-center text-gray-500 dark:text-gray-300 text-lg leading-relaxed">
+              No hay apartamentos disponibles en esta ubicación. <br />
+              Intenta con otra búsqueda.
+            </p>
           </div>
-        ))}
+        ) : (
+          filteredProperties.sort(propertySort).map((property) => (
+            <div
+              key={property.title}
+              onClick={handleCardClick}
+              className="transform transition-transform hover:scale-105 hover:shadow-lg duration-300 ease-in-out cursor-pointer"
+            >
+              <PropertyCard
+                image={property.image}
+                title={property.title}
+                address={property.address}
+                price={property.price}
+                promoted={property.promoted}
+                beds={property.beds}
+                baths={property.baths}
+                petFriendly={property.petFriendly}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

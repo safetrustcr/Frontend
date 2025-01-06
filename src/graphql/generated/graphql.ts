@@ -1703,7 +1703,6 @@ export type GetUsersQueryResult = Apollo.QueryResult<
   GetUsersQueryVariables
 >;
 
-//Begining of the query for nearby apartments
 export type GetNearbyApartmentsQueryVariables = Exact<{
   coordinates: [number, number];
   radius: number;
@@ -1774,25 +1773,6 @@ export const GetNearbyApartmentsDocument = gql`
   }
 `;
 
-/**
- * __useGetNearbyApartmentsQuery__
- *
- * To run a query within a React component, call `useGetNearbyApartmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetNearbyApartmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetNearbyApartmentsQuery({
- *   variables: {
- *     coordinates: [40.7128, -74.0060],
- *     radius: 5000,
- *     minPrice: 1000,
- *     maxPrice: 3000
- *   },
- * });
- */
 export function useGetNearbyApartmentsQuery(
   baseOptions?: Apollo.QueryHookOptions<
     GetNearbyApartmentsQuery,
