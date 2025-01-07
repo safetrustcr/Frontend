@@ -1,12 +1,13 @@
 'use client';
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BsSortDownAlt } from 'react-icons/bs';
 import PropertyCard from './PropertyCard';
 import { useTranslation } from 'react-i18next';
 import { MOCK_DATA_PROPERTY_LIST } from '@/mockData/tableData';
 import { Property } from '@/@types/property';
+import NearbyApartments from '@/components/NearbyApartments';
+import { transformQueryToProperties } from '@/@types/queryToProperty';
 
 const sortByPrice = (propertyA: Property, propertyB: Property) => {
   return parseInt(propertyA.price) - parseInt(propertyB.price);
@@ -35,18 +36,28 @@ const sortList: sortListInterface[] = [
   { id: 4, name: 'propertyList.sortBy.orderFour', sortFn: undefined },
 ];
 
-const PropertyList: React.FC = () => {
+interface PropertyListProps {
+  minPrice: number;
+  maxPrice: number;
+  selectedLocation: string;
+}
+
+const PropertyList: React.FC<PropertyListProps> = ({
+  minPrice,
+  maxPrice,
+  selectedLocation,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [sortOption, setSortOption] = useState<sortListInterface>(sortList[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [properties, setProperties] = useState<Property[]>([]);
   const [propertySort, setPropertySort] = useState<
     ((propertyA: Property, propertyB: Property) => number) | undefined
   >(() => sortByRelevance);
   const [filterOption, setFilterOption] = useState<string>(
     'Todos los apartamentos'
   );
-
   const handleCardClick = () => {
     router.push('/house');
   };
@@ -65,13 +76,53 @@ const PropertyList: React.FC = () => {
     setFilterOption(filter);
   };
 
-  const filteredProperties = MOCK_DATA_PROPERTY_LIST.filter((property) => {
-    if (filterOption === 'Todos los apartamentos') return true;
-    if (filterOption === '1 baño') return property.baths === 1;
-    if (filterOption === '2 dormitorios') return property.beds === 2;
-    if (filterOption === '+3 dormitorios') return property.beds >= 3;
-    return true;
+  // Get the coordinates for the selected location
+  const locations: Record<string, [number, number]> = {
+    'San José': [-84.08333, 9.93333],
+    Heredia: [-84.1207, 9.9782],
+    Alajuela: [-84.2113, 10.0175],
+    Cartago: [-83.9186, 9.8647],
+    Puntarenas: [-84.6307, 9.6182],
+    Guanacaste: [-85.595, 10.4915],
+    Limón: [-83.032, 9.9828],
+  };
+
+  // Get the coordinates of the selected location only if there is a selected location
+  const coordinates: [number, number] | null = selectedLocation
+    ? locations[selectedLocation]
+    : null;
+  const radius = 0.01; // Set the radius for the property search (lower value for more accurate results)
+  // Use the hook to get nearby apartments only if there are valid coordinates
+  const { data, loading, error } = NearbyApartments({
+    coordinates: coordinates ?? [-0, 0], // // Default value
+    radius,
+    minPrice,
+    maxPrice,
   });
+
+  useEffect(() => {
+    if (data) {
+      // Transform the data from the API
+      const transformedProperties = transformQueryToProperties(data.apartments);
+      setProperties(transformedProperties);
+    }
+  }, [data]);
+  // This will execute when the data changes
+  const filteredProperties = selectedLocation
+    ? properties.filter((property) => {
+        if (filterOption === 'Todos los apartamentos') return true;
+        if (filterOption === '1 baño') return property.baths === 1;
+        if (filterOption === '2 dormitorios') return property.beds === 2;
+        if (filterOption === '+3 dormitorios') return property.beds >= 3;
+        return true;
+      })
+    : MOCK_DATA_PROPERTY_LIST.filter((property) => {
+        if (filterOption === 'Todos los apartamentos') return true;
+        if (filterOption === '1 baño') return property.baths === 1;
+        if (filterOption === '2 dormitorios') return property.beds === 2;
+        if (filterOption === '+3 dormitorios') return property.beds >= 3;
+        return true;
+      });
 
   return (
     <div className="px-4 py-8 sm:px-12">
@@ -172,26 +223,34 @@ const PropertyList: React.FC = () => {
           {t('propertyList.filterFour')}
         </button>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProperties.sort(propertySort).map((property) => (
-          <div
-            key={property.title}
-            onClick={handleCardClick}
-            className="transform transition-transform hover:scale-105 hover:shadow-lg duration-300 ease-in-out cursor-pointer"
-          >
-            <PropertyCard
-              image={property.image}
-              title={property.title}
-              address={property.address}
-              price={property.price}
-              promoted={property.promoted}
-              beds={property.beds}
-              baths={property.baths}
-              petFriendly={property.petFriendly}
-            />
+        {filteredProperties.length === 0 ? (
+          <div className="col-span-full flex items-center justify-center h-64">
+            <p className="text-center text-gray-500 dark:text-gray-300 text-lg leading-relaxed">
+              No hay apartamentos disponibles en esta ubicación. <br />
+              Intenta con otra búsqueda.
+            </p>
           </div>
-        ))}
+        ) : (
+          filteredProperties.sort(propertySort).map((property) => (
+            <div
+              key={property.title}
+              onClick={handleCardClick}
+              className="transform transition-transform hover:scale-105 hover:shadow-lg duration-300 ease-in-out cursor-pointer"
+            >
+              <PropertyCard
+                image={property.image}
+                title={property.title}
+                address={property.address}
+                price={property.price}
+                promoted={property.promoted}
+                beds={property.beds}
+                baths={property.baths}
+                petFriendly={property.petFriendly}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

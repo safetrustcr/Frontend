@@ -1702,3 +1702,129 @@ export type GetUsersQueryResult = Apollo.QueryResult<
   GetUsersQuery,
   GetUsersQueryVariables
 >;
+
+export type GetNearbyApartmentsQueryVariables = Exact<{
+  coordinates: [number, number];
+  radius: number;
+  minPrice: number;
+  maxPrice: number;
+}>;
+
+export type GetNearbyApartmentsQuery = {
+  __typename?: 'query_root';
+  apartments: Array<{
+    __typename?: 'apartment';
+    id: string;
+    name: string;
+    price: number;
+    is_available: boolean;
+    apartment_images: Array<{
+      __typename?: 'apartment_image';
+      image_url: string;
+    }>;
+    address: {
+      city: string;
+      street: string;
+      country: string;
+      postal_code: string;
+      neighborhood: string;
+    };
+  }>;
+};
+
+export const GetNearbyApartmentsDocument = gql`
+  query GetNearbyApartments(  
+  $coordinates: point!,   
+  $radius: Float!,   
+  $minPrice: numeric,   
+  $maxPrice: numeric  
+  ) {  
+    apartments(where: {  
+      price: {  
+        _gte: $minPrice,  
+        _lte: $maxPrice  
+      },  
+      location_area: {  
+        _st_d_within: {  
+          distance: $radius,  
+          from: {  
+            type: "Point",  
+            coordinates: $coordinates  
+          }  
+        }  
+      }  
+    }) {
+      id
+      name
+      price
+      is_available
+      location_area
+      coordinates
+      apartment_images {
+        image_url
+      }
+      apartment_images_aggregate {
+        nodes {
+          image_url
+        }
+      }
+      address
+    }
+  }
+`;
+
+export function useGetNearbyApartmentsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetNearbyApartmentsQuery,
+    GetNearbyApartmentsQueryVariables
+  >
+) {
+  const options = { ...baseOptions };
+  return Apollo.useQuery<
+    GetNearbyApartmentsQuery,
+    GetNearbyApartmentsQueryVariables
+  >(GetNearbyApartmentsDocument, options);
+}
+
+export function useGetNearbyApartmentsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetNearbyApartmentsQuery,
+    GetNearbyApartmentsQueryVariables
+  >
+) {
+  const options = { ...baseOptions };
+  return Apollo.useLazyQuery<
+    GetNearbyApartmentsQuery,
+    GetNearbyApartmentsQueryVariables
+  >(GetNearbyApartmentsDocument, options);
+}
+
+export function useGetNearbyApartmentsSuspenseQuery(
+  baseOptions?:
+    | Apollo.SkipToken
+    | Apollo.SuspenseQueryHookOptions<
+        GetNearbyApartmentsQuery,
+        GetNearbyApartmentsQueryVariables
+      >
+) {
+  const options =
+    baseOptions === Apollo.skipToken ? baseOptions : { ...baseOptions };
+  return Apollo.useSuspenseQuery<
+    GetNearbyApartmentsQuery,
+    GetNearbyApartmentsQueryVariables
+  >(GetNearbyApartmentsDocument, options);
+}
+
+export type GetNearbyApartmentsQueryHookResult = ReturnType<
+  typeof useGetNearbyApartmentsQuery
+>;
+export type GetNearbyApartmentsLazyQueryHookResult = ReturnType<
+  typeof useGetNearbyApartmentsLazyQuery
+>;
+export type GetNearbyApartmentsSuspenseQueryHookResult = ReturnType<
+  typeof useGetNearbyApartmentsSuspenseQuery
+>;
+export type GetNearbyApartmentsQueryResult = Apollo.QueryResult<
+  GetNearbyApartmentsQuery,
+  GetNearbyApartmentsQueryVariables
+>;
