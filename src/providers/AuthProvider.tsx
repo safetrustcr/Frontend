@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useApolloClient, useQuery } from '@apollo/client';
 import { GET_USER } from '@/graphql/queries/getUser.graphql';
-import { useUserStore } from '@/store/userStore/user';
+import { User, useUserStore } from '@/store/userStore/user';
 import { toast } from 'react-toastify';
 
 const AuthContext = createContext<{
@@ -16,13 +16,13 @@ const AuthContext = createContext<{
 export const AuthProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const client = useApolloClient();
   const {
     setUser: setStoreUser,
     setUserWallets,
     setLoading: setStoreLoading,
+    user
   } = useUserStore();
 
   const {
@@ -30,13 +30,15 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
     loading: queryLoading,
     error: queryError,
   } = useQuery(GET_USER, {
-    variables: { id: user?.uid },
-    skip: !user?.uid,
+    variables: { id: user?.id },
+    skip: !user?.id,
   });
 
   useEffect(() => {
     if (data?.users?.[0]) {
-      setStoreUser(data.users[0]);
+      const { id,  first_name, last_name, summary, phone_number, country_code, location, email, profile_image_url } = data?.users?.[0]
+      const user: User = { id,  first_name, last_name, summary, phone_number, country_code, location, email, profile_image_url, created_at: new Date(), updated_at: new Date() }
+      setStoreUser(user);
       setUserWallets(data.user_wallets || []);
     }
     setStoreLoading(queryLoading);
@@ -55,12 +57,11 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({
   useEffect(() => {
     const auth = getAuth();
     return onAuthStateChanged(auth, async (user) => {
-      setUser(user);
       setLoading(false);
       if (!user) {
-        await client.resetStore();
-        setStoreUser(null);
-        setUserWallets([]);
+        // await client.resetStore();
+        // setStoreUser(defaultUser);
+        // setUserWallets([]);
       }
     });
   }, [client, setStoreUser, setUserWallets]);

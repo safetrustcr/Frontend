@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Header from '@/layouts/Header';
 import Sidebar from '@/layouts/profile/Sidebar';
 import ProfilePicture from '@/components/profile/ProfilePicture';
@@ -13,9 +13,43 @@ import {
 import { ApolloError, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import LoadingSkeleton from '@/components/profile/LoadingSkeleton';
-import { useUserStore } from '@/store/userStore/user';
+import { User, useUserStore } from '@/store/userStore/user';
 const Home: React.FC = () => {
+  
   const { user, loading, setUser } = useUserStore();
+
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    summary: '',
+    phone_number: '',
+    country_code: '',
+    location: '',
+  });
+  
+  const [picture, setPicture] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        summary: user.summary,
+        phone_number: user.phone_number,
+        country_code: user.country_code,
+        location: user.location,
+      });
+      setPicture(user.profile_image_url);
+    }
+  }, [user]);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const { t } = useTranslation();
 
   const [updateUser] = useMutation(UPDATE_USER_RECORD);
@@ -24,23 +58,28 @@ const Home: React.FC = () => {
   const handleSave = async () => {
     try {
       const input = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        summary: user.summary,
-        phone_number: user.phone_number,
-        country_code: user.country_code,
-        location: user.location,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        summary: formData.summary,
+        phone_number: formData.phone_number,
+        country_code: formData.country_code,
+        location: formData.location,
       };
-      const userId = '97633789-d1ac-4526-80dc-d0a92ff3502e';
+      const userId = '97633789-d1ac-4526-80dc-d0a92ff3502e'; //Obtained from DB
 
-      await updateUser({
+      const response = await updateUser({
         variables: { userId, input },
       });
 
+      const { id,  first_name, last_name, summary, phone_number, country_code, location, email, profile_image_url } = response.data.update_users_by_pk
+      const user: User = {id, first_name, last_name, summary, phone_number, country_code, location, email, profile_image_url, created_at: new Date(), updated_at: new Date() }
+      
       const imageUrl = 'https://placecats.com/millie/300/150';
       const imageKey = 'cat';
 
       await updateProfileImage({ variables: { userId, imageUrl, imageKey } });
+
+      setPicture(imageUrl)
       setUser({
         ...user,
         profile_image_url: imageUrl,
@@ -87,15 +126,23 @@ const Home: React.FC = () => {
                 {t('profile.title')}
               </h1>
               <div className="flex items-center gap-6 mb-6">
-                <ProfilePicture />
+                <ProfilePicture src={picture}/>
                 <textarea
+                  name="summary"
                   placeholder={t('profile.summaryHolder')}
-                  value={user?.summary}
+                  value={formData.summary}
                   className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 w-full text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface placeholder-gray-500 dark:placeholder-gray-400"
                   rows={3}
+                  onChange={handleChange}
                 />
               </div>
-              <ProfileForm />
+              <ProfileForm             
+                first_name={formData.first_name}
+                last_name={formData.last_name}
+                phone_number={formData.phone_number}
+                country_code={formData.country_code}
+                location={formData.location}
+                onInputChange={handleChange}/>
               <AccountOverview />
               <div className="text-right">
                 <button
