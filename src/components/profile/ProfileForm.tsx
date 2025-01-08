@@ -3,19 +3,23 @@ import CountrySelect from '@/components/profile/CountrySelect';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '@/store/userStore';
 
-const ProfileForm: React.FC = () => {
-  const { user, setUser } = useUserStore();
+interface Props {
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  country_code: string;
+  location: string;
+  onInputChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
-
+const ProfileForm: React.FC<Props> = ({
+  first_name,
+  last_name,
+  phone_number,
+  country_code,
+  location,
+  onInputChange,
+}) => {
   const inputClasses =
     'border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-gray-900 dark:text-dark-primary bg-white dark:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-default-color dark:focus:ring-default-color transition-colors';
   const { t } = useTranslation();
@@ -26,39 +30,39 @@ const ProfileForm: React.FC = () => {
         name="first_name"
         type="text"
         placeholder={t('profile.nameHolder')}
-        value={user.first_name}
+        value={first_name}
         className={inputClasses}
-        onChange={handleInputChange}
+        onChange={onInputChange}
       />
       <input
         name="last_name"
         type="text"
         placeholder={t('profile.SurnameHolder')}
-        value={user.last_name}
+        value={last_name}
         className={inputClasses}
-        onChange={handleInputChange}
+        onChange={onInputChange}
       />
       <div className="flex">
         <CountrySelect
-          country_code={user.country_code}
-          onInputChange={handleInputChange}
+          country_code={country_code}
+          onInputChange={onInputChange}
         />
         <input
           name="phone_number"
           type="text"
           placeholder={t('profile.phoneHolder')}
-          value={user.phone_number}
+          value={phone_number}
           className={inputClasses}
-          onChange={handleInputChange}
+          onChange={onInputChange}
         />
       </div>
       <input
         name="location"
         type="text"
         placeholder={t('profile.LocationHolder')}
-        value={user.location}
+        value={location}
         className={inputClasses}
-        onChange={handleInputChange}
+        onChange={onInputChange}
       />
     </div>
   );

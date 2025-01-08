@@ -31,16 +31,16 @@ export interface GetUserQuery {
 type UserState = {
   loading: boolean;
   error: ApolloError | null;
-  user: User;
+  user: User | null;
   userWallets: UserWallet[];
   setLoading: (loading: boolean) => void;
   setError: (error: ApolloError | null) => void;
-  setUser: (user: User | null) => void;
+  setUser: (user: User) => void;
   setUserWallets: (userWallets: UserWallet[]) => void;
 };
 
-const defaultUser: User = {
-  id: 'default',
+  export const defaultUser: User = {
+  id: '97633789-d1ac-4526-80dc-d0a92ff3502e', //Obtained from database
   email: 'randall@safetrust.io',
   first_name: 'Randall',
   last_name: 'Valenciano',
@@ -56,16 +56,16 @@ const defaultUser: User = {
 
 export const useUserStore = create<UserState>()(
   persist(
-    devtools((set) => ({
+    (set) => ({
       user: defaultUser,
       userWallets: [],
       loading: false,
       error: null,
       setLoading: (loading: boolean) => set({ loading }),
       setError: (error: ApolloError | null) => set({ error }),
-      setUser: (user: User) => set({ user }),
+      setUser: (user: User | null) => set({ user: user ?? defaultUser }),
       setUserWallets: (userWallets: UserWallet[]) => set({ userWallets }),
-    })),
+    }),
     {
       name: 'safetrust-user',
     }
