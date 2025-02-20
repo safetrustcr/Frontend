@@ -26,7 +26,7 @@ export const useGlobalAuthenticationSlice: StateCreator<
       set(
         { address: "", name: "" },
         false,
-        AUTHENTICATION_ACTIONS.DISCONNECT_WALLET
+        AUTHENTICATION_ACTIONS.DISCONNECT_WALLET,
       ),
   };
 };

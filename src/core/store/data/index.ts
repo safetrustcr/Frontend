@@ -12,6 +12,6 @@ export const useGlobalAuthenticationStore = create<AuthState>()(
     }),
     {
       name: "address-wallet",
-    }
-  )
+    },
+  ),
 );
