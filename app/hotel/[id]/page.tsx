@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Header from '@/layouts/Header';
-import HotelReservation from '../../../src/components/hotels/HotelReservationSummary';
+import HotelDetails from '@/components/hotels/HotelDetails';
+import ReservationSummary from '@/components/hotels/ReservationSummary';
 
 const HotelPage = () => {
   // This would typically come from an API or database
@@ -30,7 +31,32 @@ const HotelPage = () => {
     <div className="bg-light-secondary dark:bg-dark-background min-h-screen">
       <Header />
       <div className="w-full bg-light-secondary dark:bg-dark-background px-4 md:px-10 py-6 md:py-8">
-        <HotelReservation {...hotelData} />
+        <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
+          <div className="flex-grow">
+            <HotelDetails
+              hotelName={hotelData.hotelName}
+              description={hotelData.description}
+              details={hotelData.details}
+              goodToKnow={hotelData.goodToKnow}
+              location={hotelData.location}
+              coordinates={hotelData.coordinates}
+              rating={hotelData.rating}
+              beds={hotelData.beds}
+              baths={hotelData.baths}
+              imageUrl={hotelData.imageUrl}
+            />
+          </div>
+          <div className="w-full md:w-[300px] lg:w-[350px] shrink-0">
+            <ReservationSummary
+              hotelName={hotelData.hotelName}
+              description={hotelData.description}
+              price={hotelData.price}
+              tax={hotelData.tax}
+              checkIn={hotelData.checkIn}
+              checkOut={hotelData.checkOut}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
