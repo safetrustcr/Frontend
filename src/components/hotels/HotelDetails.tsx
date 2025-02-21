@@ -5,6 +5,7 @@ import { FaBath } from 'react-icons/fa';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
+import { useTranslation } from 'react-i18next';
 
 const MapComponent = dynamic(() => import('@/components/hotels/Map'), {
   ssr: false,
@@ -36,6 +37,8 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
   baths,
   imageUrl,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-6">
       <div className="flex items-start gap-4">
@@ -55,10 +58,7 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
           <div className="flex items-center gap-2 mt-2">
             {[...Array(5)].map((_, i) => (
               <svg
-                key={`star-${
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                  i
-                }`}
+                key={`star-${i}`}
                 className={`w-5 h-5 ${
                   i < rating ? 'text-yellow-400' : 'text-gray-300'
                 }`}
@@ -78,7 +78,9 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
                 size={20}
                 aria-hidden="true"
               />
-              <span>{beds} bed</span>
+              <span>
+                {beds} {t('hotelDetails.beds')}
+              </span>
             </div>
             <div className="flex items-center gap-2 dark:text-gray-400">
               <FaBath
@@ -86,7 +88,9 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
                 size={18}
                 aria-hidden="true"
               />
-              <span>{baths} ba</span>
+              <span>
+                {baths} {t('hotelDetails.baths')}
+              </span>
             </div>
           </div>
         </div>
@@ -94,7 +98,9 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
 
       <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle className="dark:text-gray-300">Hotel details</CardTitle>
+          <CardTitle className="dark:text-gray-300">
+            {t('hotelDetails.details')}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 dark:text-gray-400">{details}</p>
@@ -103,7 +109,9 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
 
       <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle className="dark:text-gray-300">Location</CardTitle>
+          <CardTitle className="dark:text-gray-300">
+            {t('hotelDetails.location')}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 dark:text-gray-400">{location}</p>
@@ -115,7 +123,9 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
 
       <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle className="dark:text-gray-300">Good to know:</CardTitle>
+          <CardTitle className="dark:text-gray-300">
+            {t('hotelDetails.goodToKnow')}:
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 dark:text-gray-400">{goodToKnow}</p>
