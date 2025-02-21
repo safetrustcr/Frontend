@@ -6,14 +6,19 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { useTheme } from '@/providers/ThemeProvider';
 import LanguageSwitcher from '@/components/language/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const [logoSrc, setLogoSrc] = useState('/img/logo.png');
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setLogoSrc(theme === 'dark' ? '/img/logolight.png' : '/img/logo.png');
+  }, [theme]);
 
   const toggleMenu = (menu: string) => {
     if (menu === 'search') {
@@ -34,11 +39,7 @@ const Header: React.FC = () => {
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex-shrink-0 flex items-center">
           <Link href="/" className="flex items-center">
-            <img
-              src={theme === 'dark' ? '/img/logolight.png' : '/img/logo.png'}
-              alt="SafeTrust Logo"
-              className="h-12"
-            />
+            <img src={logoSrc} alt="SafeTrust Logo" className="h-12" />
           </Link>
           <span className="ml-2 text-3xl font-bold text-black dark:text-white">
             SafeTrust
