@@ -1,12 +1,18 @@
 import switchLanguage from '@/utils/i18n';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/config';
 
 function LanguageSwitcher() {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language.toUpperCase());
+  const [language, setLanguage] = useState('EN');
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setLanguage(i18n.language.toUpperCase());
+  }, [i18n.language]);
 
   const handleChangeLanguage = (lang: string) => {
     setLanguage(lang.toUpperCase());
@@ -14,28 +20,19 @@ function LanguageSwitcher() {
     setIsOpen(false);
   };
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="relative">
       {/* Toggle Button */}
       <button
+        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-default-color dark:bg-dark-surface dark:border-gray-700 dark:text-gray-200"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-transparent rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 focus:outline-none"
+        onMouseEnter={() => setIsOpen(true)}
       >
         {language}
-        <svg
-          className="w-5 h-5 ml-2 text-gray-500 dark:text-gray-300"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 20 20"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 01.02-1.06z"
-          />
-        </svg>
       </button>
 
       {/* Dropdown Menu */}
