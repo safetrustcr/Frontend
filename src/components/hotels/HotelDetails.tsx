@@ -48,8 +48,10 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
           />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold">{hotelName}</h2>
-          <p className="text-gray-600">{description}</p>
+          <h2 className="text-2xl font-semibold dark:text-gray-300">
+            {hotelName}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">{description}</p>
           <div className="flex items-center gap-2 mt-2">
             {[...Array(5)].map((_, i) => (
               <svg
@@ -70,45 +72,53 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
             <span className="text-yellow-400 ml-1">{rating.toFixed(1)}</span>
           </div>
           <div className="flex items-center gap-4 mt-4">
-            <div className="flex items-center gap-2">
-              <BiBed className="text-blue-500" size={20} aria-hidden="true" />
+            <div className="flex items-center gap-2 dark:text-gray-400">
+              <BiBed
+                className="text-blue-500 dark:text-blue-400"
+                size={20}
+                aria-hidden="true"
+              />
               <span>{beds} bed</span>
             </div>
-            <div className="flex items-center gap-2">
-              <FaBath className="text-blue-500" size={18} aria-hidden="true" />
+            <div className="flex items-center gap-2 dark:text-gray-400">
+              <FaBath
+                className="text-blue-500 dark:text-blue-400"
+                size={18}
+                aria-hidden="true"
+              />
               <span>{baths} ba</span>
             </div>
           </div>
         </div>
       </div>
 
-      <Card>
+      <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle>Hotel details</CardTitle>
+          <CardTitle className="dark:text-gray-300">Hotel details</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600">{details}</p>
+          <p className="text-gray-600 dark:text-gray-400">{details}</p>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle>Location</CardTitle>
+          <CardTitle className="dark:text-gray-300">Location</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600">{location}</p>
+          <p className="text-gray-600 dark:text-gray-400">{location}</p>
           <div className="h-64 rounded-lg overflow-hidden">
             <MapComponent coordinates={coordinates} hotelName={hotelName} />
           </div>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="dark:border-gray-700">
         <CardHeader>
-          <CardTitle>Good to know:</CardTitle>
+          <CardTitle className="dark:text-gray-300">Good to know:</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600">{goodToKnow}</p>
+          <p className="text-gray-600 dark:text-gray-400">{goodToKnow}</p>
         </CardContent>
       </Card>
     </div>
