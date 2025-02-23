@@ -5,7 +5,6 @@ import { FaBath } from 'react-icons/fa';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
-import { useTranslation } from 'react-i18next';
 
 const MapComponent = dynamic(() => import('@/components/hotels/Map'), {
   ssr: false,
@@ -37,8 +36,6 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
   baths,
   imageUrl,
 }) => {
-  const { t } = useTranslation();
-
   return (
     <div className="space-y-6">
       <div className="flex items-start gap-4">
@@ -79,7 +76,7 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
                 aria-hidden="true"
               />
               <span>
-                {beds} {t('hotelDetails.beds')}
+                {beds} Beds
               </span>
             </div>
             <div className="flex items-center gap-2 dark:text-gray-400">
@@ -89,7 +86,7 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
                 aria-hidden="true"
               />
               <span>
-                {baths} {t('hotelDetails.baths')}
+                {baths} Baths
               </span>
             </div>
           </div>
@@ -99,7 +96,7 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
       <Card className="dark:border-gray-700">
         <CardHeader>
           <CardTitle className="dark:text-gray-300">
-            {t('hotelDetails.details')}
+            Details
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -110,12 +107,12 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
       <Card className="dark:border-gray-700">
         <CardHeader>
           <CardTitle className="dark:text-gray-300">
-            {t('hotelDetails.location')}
+            Location
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 dark:text-gray-400">{location}</p>
-          <div className="h-64 rounded-lg overflow-hidden">
+          <div className="h-64 rounded-lg overflow-hidden relative z-0">
             <MapComponent coordinates={coordinates} hotelName={hotelName} />
           </div>
         </CardContent>
@@ -124,7 +121,7 @@ const HotelDetails: React.FC<HotelDetailsProps> = ({
       <Card className="dark:border-gray-700">
         <CardHeader>
           <CardTitle className="dark:text-gray-300">
-            {t('hotelDetails.goodToKnow')}:
+            Good to Know:
           </CardTitle>
         </CardHeader>
         <CardContent>
